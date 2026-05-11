@@ -25,7 +25,7 @@
                     'id' => 2,
                     'title' => 'Ethical Hacking for Beginner',
                     'platform' => 'Jagoan Siber',
-                    'desc' => 'Secured 3rd place in a comprehensive Ethical Hacking assessment by identifying 26 vulnerabilities across two dedicated laboratory environments. Vurnelbility that i fouind including Remote Code Execution (RCE), Cross-Site Scripting (XSS), Information Disclosure, and Broken Access Control.',
+                    'desc' => 'Secured 3rd place in a comprehensive Ethical Hacking assessment by identifying 26 vulnerabilities across two dedicated laboratory environments. Vulnerability that I found including Remote Code Execution (RCE), Cross-Site Scripting (XSS), Information Disclosure, and Broken Access Control.',
                     'has_leaderboard' => true,
                     'img_cert' => '/images/certification/Serfitifkat-Ethical-Hacking.webp',
                     'img_leaderboard' => '/images/certification/Leaderboard-Ethical-Hacking.webp'
