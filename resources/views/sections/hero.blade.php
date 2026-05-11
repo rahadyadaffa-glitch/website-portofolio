@@ -8,7 +8,7 @@
         <div class="mb-16 transition-all duration-1000"
             :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
             <p class="text-3xl sm:text-5xl text-[var(--text-main)] font-bold mb-6 tracking-tight">
-                Hi, I'm Daffa Rahadya A.
+                Hi, I'm Daffa Rahadya Atmawiguna.
             </p>
             <h1 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-[0.1em] leading-tight uppercase glitch">
                 <span class="glitch-text text-[var(--text-main)]"
@@ -40,7 +40,7 @@
                 <div class="w-[85%] aspect-[4/5] bg-[var(--bg-alt)] relative p-4 neo-shadow neo-border">
                     <div
                         class="w-full h-full overflow-hidden grayscale contrast-110 hover:grayscale-0 transition-all duration-1000">
-                        <img src="/images/about/profile.webp" alt="Daffa Rahadya" class="object-cover w-full h-full">
+                        <img src="/images/about/profile.webp" alt="Daffa Rahadya Atmawiguna" class="object-cover w-full h-full">
                     </div>
                     <!-- Decorative Tan Square -->
                     <div

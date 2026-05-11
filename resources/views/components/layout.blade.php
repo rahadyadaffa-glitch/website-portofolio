@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daffa Rahadya - Portfolio</title>
+    <title>Daffa Rahadya Atmawiguna - Portfolio</title>
     <meta name="description" content="{{ __('messages.hero.tagline') }}">
     
     <!-- Alpine.js Plugins -->
@@ -188,7 +188,7 @@
     </main>
 
     <footer class="bg-white text-gray-500 py-12 text-center border-t border-gray-200 mt-20" x-data="{ shown: false }" x-intersect.once.margin.-100px="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'" class="transition-all duration-1000 delay-200">
-        <p class="text-sm">&copy; {{ date('Y') }} Daffa Rahadya. All rights reserved.</p>
+        <p class="text-sm">&copy; {{ date('Y') }} Daffa Rahadya Atmawiguna. All rights reserved.</p>
     </footer>
 
 </body>
