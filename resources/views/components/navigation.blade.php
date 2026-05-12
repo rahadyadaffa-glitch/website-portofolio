@@ -19,7 +19,7 @@
                 <a href="#certificate" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">{{ __('messages.nav.certificates') }}</a>
                 <a href="#education" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">{{ __('messages.nav.university') }}</a>
                 <a href="#contact" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">{{ __('messages.nav.contact') }}</a>
-                <a href="/images/cv/CV_Daffa Rahadya Atmawiguna.pdf" target="_blank" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">{{ __('messages.nav.cv') }}</a>
+                <a href="/images/cv/CV_Daffa Rahadya Atmawiguna.pdf" download class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">{{ __('messages.nav.cv') }}</a>
             </div>
 
             <!-- Mobile Menu Toggles -->
@@ -51,7 +51,7 @@
             <a href="#certificate" @click="mobileMenuOpen = false" class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">{{ __('messages.nav.certificates') }}</a>
             <a href="#education" @click="mobileMenuOpen = false" class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">{{ __('messages.nav.university') }}</a>
             <a href="#contact" @click="mobileMenuOpen = false" class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">{{ __('messages.nav.contact') }}</a>
-            <a href="/images/cv/CV_Daffa Rahadya Atmawiguna.pdf" target="_blank" @click="mobileMenuOpen = false" class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3">{{ __('messages.nav.cv') }}</a>
+            <a href="/images/cv/CV_Daffa Rahadya Atmawiguna.pdf" download @click="mobileMenuOpen = false" class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3">{{ __('messages.nav.cv') }}</a>
         </div>
     </div>
 </nav>
