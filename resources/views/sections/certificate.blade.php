@@ -18,7 +18,7 @@
                     'platform' => 'Jagoan Siber',
                     'desc' => 'Ranked 3rd in a Jeopardy-style CTF competition as a Final Project. I successfully tackled complex challenges across all core categories: scenario reading, SIEM analysis, network forensics, memory forensics, threat hunting, threat intelligence, alert triaging, and incident reporting.',
                     'has_leaderboard' => true,
-                    'img_cert' => '/images/certification/Serifikat-SOC.webp',
+                    'img_cert' => '/images/certification/Sertifikat-SOC.webp',
                     'img_leaderboard' => '/images/certification/Leaderboard-SOC-Analyst.webp'
                 ],
                 [
@@ -27,7 +27,7 @@
                     'platform' => 'Jagoan Siber',
                     'desc' => 'Secured 3rd place in a comprehensive Ethical Hacking assessment by identifying 26 vulnerabilities across two dedicated laboratory environments. Vulnerability that I found including Remote Code Execution (RCE), Cross-Site Scripting (XSS), Information Disclosure, and Broken Access Control.',
                     'has_leaderboard' => true,
-                    'img_cert' => '/images/certification/Serfitifkat-Ethical-Hacking.webp',
+                    'img_cert' => '/images/certification/Sertifikat-Ethical-Hacking.webp',
                     'img_leaderboard' => '/images/certification/Leaderboard-Ethical-Hacking.webp'
                 ]
             ];

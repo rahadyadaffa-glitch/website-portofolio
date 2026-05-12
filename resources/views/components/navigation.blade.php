@@ -13,12 +13,13 @@
             <!-- Desktop Menu -->
             <div class="hidden lg:flex items-center space-x-8">
                 <a href="#about" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">{{ __('messages.nav.about') }}</a>
-                <a href="#skills" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">Skills</a>
+                <a href="#skills" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">{{ __('messages.nav.skills') }}</a>
                 <a href="#portfolio" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">{{ __('messages.nav.portfolio') }}</a>
                 <a href="#organization" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">{{ __('messages.nav.organization') }}</a>
-                <a href="#certificate" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">Certificates</a>
+                <a href="#certificate" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">{{ __('messages.nav.certificates') }}</a>
                 <a href="#education" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">{{ __('messages.nav.university') }}</a>
-                <a href="#contact" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">Contact</a>
+                <a href="#contact" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">{{ __('messages.nav.contact') }}</a>
+                <a href="/images/cv/CV_Daffa Rahadya Atmawiguna.pdf" target="_blank" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">{{ __('messages.nav.cv') }}</a>
             </div>
 
             <!-- Mobile Menu Toggles -->
@@ -44,12 +45,13 @@
          style="display: none;">
         <div class="px-4 pt-2 pb-6 space-y-4">
             <a href="#about" @click="mobileMenuOpen = false" class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">{{ __('messages.nav.about') }}</a>
-            <a href="#skills" @click="mobileMenuOpen = false" class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">Skills</a>
+            <a href="#skills" @click="mobileMenuOpen = false" class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">{{ __('messages.nav.skills') }}</a>
             <a href="#portfolio" @click="mobileMenuOpen = false" class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">{{ __('messages.nav.portfolio') }}</a>
             <a href="#organization" @click="mobileMenuOpen = false" class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">{{ __('messages.nav.organization') }}</a>
-            <a href="#certificate" @click="mobileMenuOpen = false" class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">Certificates</a>
+            <a href="#certificate" @click="mobileMenuOpen = false" class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">{{ __('messages.nav.certificates') }}</a>
             <a href="#education" @click="mobileMenuOpen = false" class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">{{ __('messages.nav.university') }}</a>
-            <a href="#contact" @click="mobileMenuOpen = false" class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3">Contact</a>
+            <a href="#contact" @click="mobileMenuOpen = false" class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">{{ __('messages.nav.contact') }}</a>
+            <a href="/images/cv/CV_Daffa Rahadya Atmawiguna.pdf" target="_blank" @click="mobileMenuOpen = false" class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3">{{ __('messages.nav.cv') }}</a>
         </div>
     </div>
 </nav>
