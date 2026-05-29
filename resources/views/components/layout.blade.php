@@ -6,6 +6,28 @@
     <title>Daffa Rahadya Atmawiguna - Portfolio</title>
     <meta name="description" content="{{ __('messages.hero.tagline') }}">
     
+    <!-- Hide Alpine.js version from scanners (Information Leakage Mitigation) -->
+    <script>
+        (function() {
+            let _alpine;
+            Object.defineProperty(window, 'Alpine', {
+                get() { return _alpine; },
+                set(val) {
+                    _alpine = val;
+                    if (_alpine) {
+                        try {
+                            Object.defineProperty(_alpine, 'version', {
+                                get: () => undefined,
+                                configurable: true
+                            });
+                        } catch (e) {}
+                    }
+                },
+                configurable: true
+            });
+        })();
+    </script>
+
     <!-- Alpine.js Plugins -->
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
     <!-- Alpine.js Core -->
