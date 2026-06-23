@@ -1,4 +1,4 @@
-<nav class="bg-[var(--bg)]/90 backdrop-blur-xl border-b border-[var(--border)] z-50 fixed top-0 w-full"
+<nav aria-label="Main navigation" class="bg-[var(--bg)]/90 backdrop-blur-xl border-b border-[var(--border)] z-50 fixed top-0 w-full"
     x-data="{ atTop: true, mobileMenuOpen: false }" @scroll.window="atTop = (window.pageYOffset > 20) ? false : true">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300" :class="atTop ? 'h-16 sm:h-24' : 'h-16'">
@@ -6,7 +6,7 @@
 
             <!-- Logo Section -->
             <div class="flex items-center">
-                <a href="#" class="font-black text-2xl sm:text-3xl tracking-tighter text-black">Daffa.</a>
+                <a href="#" aria-label="Homepage" class="font-black text-2xl sm:text-3xl tracking-tighter text-black">Daffa.</a>
             </div>
 
             <!-- Desktop Menu -->
@@ -32,12 +32,15 @@
             <!-- Mobile Menu Toggles -->
             <div class="lg:hidden flex items-center">
                 <button @click="mobileMenuOpen = !mobileMenuOpen"
-                    class="text-[var(--text-main)] p-2 focus:outline-none">
-                    <svg x-show="!mobileMenuOpen" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    :aria-expanded="mobileMenuOpen.toString()"
+                    aria-controls="mobile-menu"
+                    aria-label="Toggle navigation menu"
+                    class="text-[var(--text-main)] p-2 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] rounded">
+                    <svg x-show="!mobileMenuOpen" aria-hidden="true" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
                             d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
-                    <svg x-show="mobileMenuOpen" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    <svg x-show="mobileMenuOpen" aria-hidden="true" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         style="display: none;">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
                             d="M6 18L18 6M6 6l12 12" />
@@ -53,7 +56,7 @@
         x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
         x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0"
         x-transition:leave-end="opacity-0 -translate-y-4"
-        class="lg:hidden bg-[var(--bg)] border-b border-[var(--border)]" style="display: none;">
+        class="lg:hidden bg-[var(--bg)] border-b border-[var(--border)] max-h-[calc(100vh-4rem)] overflow-y-auto" id="mobile-menu" style="display: none;">
         <div class="px-4 pt-2 pb-6 space-y-4">
             <a href="#about" @click="mobileMenuOpen = false"
                 class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">{{ __('messages.nav.about') }}</a>

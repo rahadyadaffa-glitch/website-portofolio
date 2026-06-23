@@ -54,7 +54,7 @@
                         <p
                             class="text-xs font-black text-[var(--text-dim)] group-hover:text-[var(--text-main)] transition-colors tracking-[0.3em] uppercase flex items-center gap-3">
                             View Certificate
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
                                     d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
@@ -79,7 +79,7 @@
                     <!-- Close button -->
                     <button @click="expandedCert = null"
                         class="fixed top-4 right-4 z-[110] sm:top-8 sm:right-8 p-3 rounded-full bg-gray-100 hover:bg-gray-200 text-black transition-colors">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg aria-hidden="true" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -100,7 +100,7 @@
                                 <img :src="expandedCert?.img_cert" :alt="expandedCert?.title"
                                     class="w-full object-contain max-h-[80vh] shadow-2xl transition-transform duration-500 group-hover/img:scale-[1.02]">
                                 <span
-                                    class="mt-4 text-[10px] font-black uppercase tracking-widest text-zinc-400 group-hover/img:text-[var(--accent)] transition-colors">Click
+                                    class="mt-4 text-[10px] font-black uppercase tracking-widest text-gray-600 group-hover/img:text-[var(--accent)] transition-colors">Click
                                     to Expand</span>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                                         alt="Leaderboard details">
                                 </div>
                                 <p
-                                    class="mt-2 text-center text-[9px] font-black uppercase tracking-widest text-zinc-400 group-hover/img:text-[var(--accent)] transition-colors">
+                                    class="mt-2 text-center text-[9px] font-black uppercase tracking-widest text-gray-600 group-hover/img:text-[var(--accent)] transition-colors">
                                     Click to Expand Achievement</p>
                             </div>
 
@@ -137,7 +137,7 @@
                                 <div class="mt-12 pt-8 border-t border-[var(--border)]/50">
                                     <button @click="expandedCert = null"
                                         class="text-sm font-black uppercase tracking-widest text-[var(--text-main)] hover:text-[var(--accent)] transition-colors flex items-center gap-3">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
                                                 d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                                         </svg>
@@ -162,7 +162,7 @@
 
                 <button @click="expandedImage = null"
                     class="absolute top-8 right-8 p-4 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all">
-                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg aria-hidden="true" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M6 18L18 6M6 6l12 12" />
                     </svg>

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daffa Rahadya Atmawiguna - Portfolio</title>
     <meta name="description" content="Aspiring Web Pentest &amp; SOC Analyst focusing on Penetration Testing and Security Operations Center.">
+    <meta name="theme-color" content="#F9F8F6">
+    <meta name="robots" content="index, follow">
 
     <!-- Hide Alpine.js version from scanners (Information Leakage Mitigation) -->
     <script>
@@ -34,12 +36,19 @@
     <!-- Alpine.js Core -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-    <!-- Google Fonts: Space Grotesk & Inter -->
+    <!-- Google Fonts: preload for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap"
+            rel="stylesheet">
+    </noscript>
 
     <style>
         :root {
@@ -241,9 +250,15 @@
             <link rel="preload" as="style" href="http://vibecode-porto.test/build/assets/app-45xdUzH2.css" /><link rel="modulepreload" as="script" href="http://vibecode-porto.test/build/assets/app-BU6mFzGd.js" /><link rel="stylesheet" href="http://vibecode-porto.test/build/assets/app-45xdUzH2.css" /><script type="module" src="http://vibecode-porto.test/build/assets/app-BU6mFzGd.js"></script>    </head>
 
 <body class="bg-white text-gray-900 antialiased" x-data="{ expandedCert: null, expandedAchievement: null }">
+    <!-- Skip to content link (keyboard accessibility) -->
+    <a href="#main-content"
+        class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-[var(--accent)] focus:text-white focus:font-bold focus:text-sm">
+        Skip to main content
+    </a>
+
     <div class="grain"></div>
 
-    <nav class="bg-[var(--bg)]/90 backdrop-blur-xl border-b border-[var(--border)] z-50 fixed top-0 w-full"
+    <nav aria-label="Main navigation" class="bg-[var(--bg)]/90 backdrop-blur-xl border-b border-[var(--border)] z-50 fixed top-0 w-full"
     x-data="{ atTop: true, mobileMenuOpen: false }" @scroll.window="atTop = (window.pageYOffset > 20) ? false : true">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300" :class="atTop ? 'h-16 sm:h-24' : 'h-16'">
@@ -251,7 +266,7 @@
 
             <!-- Logo Section -->
             <div class="flex items-center">
-                <a href="#" class="font-black text-2xl sm:text-3xl tracking-tighter text-black">Daffa.</a>
+                <a href="#" aria-label="Homepage" class="font-black text-2xl sm:text-3xl tracking-tighter text-black">Daffa.</a>
             </div>
 
             <!-- Desktop Menu -->
@@ -277,12 +292,15 @@
             <!-- Mobile Menu Toggles -->
             <div class="lg:hidden flex items-center">
                 <button @click="mobileMenuOpen = !mobileMenuOpen"
-                    class="text-[var(--text-main)] p-2 focus:outline-none">
-                    <svg x-show="!mobileMenuOpen" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    :aria-expanded="mobileMenuOpen.toString()"
+                    aria-controls="mobile-menu"
+                    aria-label="Toggle navigation menu"
+                    class="text-[var(--text-main)] p-2 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] rounded">
+                    <svg x-show="!mobileMenuOpen" aria-hidden="true" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
                             d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
-                    <svg x-show="mobileMenuOpen" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    <svg x-show="mobileMenuOpen" aria-hidden="true" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         style="display: none;">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
                             d="M6 18L18 6M6 6l12 12" />
@@ -298,7 +316,7 @@
         x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
         x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0"
         x-transition:leave-end="opacity-0 -translate-y-4"
-        class="lg:hidden bg-[var(--bg)] border-b border-[var(--border)]" style="display: none;">
+        class="lg:hidden bg-[var(--bg)] border-b border-[var(--border)] max-h-[calc(100vh-4rem)] overflow-y-auto" id="mobile-menu" style="display: none;">
         <div class="px-4 pt-2 pb-6 space-y-4">
             <a href="#about" @click="mobileMenuOpen = false"
                 class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">About</a>
@@ -320,7 +338,7 @@
         </div>
     </div>
 </nav>
-    <main class="overflow-x-clip">
+    <main id="main-content" class="overflow-x-clip">
         <!-- About Section -->
 <section id="about" class="pt-0 sm:pt-16 pb-24 relative" x-data="{ shown: false }"
     x-intersect.once.margin.-100px="shown = true">
@@ -357,7 +375,7 @@
                     <a href="/images/cv/CV_Daffa Rahadya Atmawiguna.pdf" download
                         class="px-6 py-4 sm:px-10 sm:py-5 bg-white text-[var(--text-main)] font-bold text-lg sm:text-xl neo-shadow neo-shadow-hover border-2 border-[var(--border)] uppercase tracking-widest hover:bg-gray-50 transition-all flex items-center gap-2">
                         Download CV
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                         </svg>
@@ -371,6 +389,8 @@
                     <div
                         class="w-full h-full overflow-hidden grayscale contrast-110 hover:grayscale-0 transition-all duration-1000">
                         <img src="/images/about/profile.webp" alt="Daffa Rahadya Atmawiguna"
+                            width="320" height="320"
+                            fetchpriority="high" decoding="async"
                             class="object-cover w-full h-full">
                     </div>
                     <!-- Decorative Tan Square -->
@@ -397,7 +417,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
                 <span
-                    class="text-sm font-bold text-gray-400 uppercase block mb-4">Penetration Testing</span>
+                    class="text-sm font-bold text-gray-600 uppercase block mb-4">Penetration Testing</span>
                 <div class="flex flex-wrap gap-4">
                     <span
                         class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Sqlmap</span>
@@ -421,7 +441,7 @@
 
             <div>
                 <span
-                    class="text-sm font-bold text-gray-400 uppercase block mb-4">Security Operations</span>
+                    class="text-sm font-bold text-gray-600 uppercase block mb-4">Security Operations</span>
                 <div class="flex flex-wrap gap-4">
                     <span
                         class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Wireshark</span>
@@ -432,7 +452,7 @@
 
             <div>
                 <span
-                    class="text-sm font-bold text-gray-400 uppercase block mb-4">Operating Systems</span>
+                    class="text-sm font-bold text-gray-600 uppercase block mb-4">Operating Systems</span>
                 <div class="flex flex-wrap gap-4">
                     <span
                         class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Linux</span>
@@ -487,7 +507,7 @@
                             <div
                                 class="mt-12 inline-flex items-center gap-3 font-black text-[var(--text-main)] border-b-4 border-[var(--accent)] pb-2 transition-all group-hover:border-[var(--text-main)] uppercase tracking-[0.2em] text-sm">
                                 Browse on GitHub
-                                <svg class="w-6 h-6 transition-transform group-hover:translate-x-3" fill="none"
+                                <svg aria-hidden="true" class="w-6 h-6 transition-transform group-hover:translate-x-3" fill="none"
                                     stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
                                         d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -525,7 +545,7 @@
                             <div
                                 class="mt-12 inline-flex items-center gap-3 font-black text-[var(--text-main)] border-b-4 border-[var(--accent)] pb-2 transition-all group-hover:border-[var(--text-main)] uppercase tracking-[0.2em] text-sm">
                                 Browse on GitHub
-                                <svg class="w-6 h-6 transition-transform group-hover:translate-x-3" fill="none"
+                                <svg aria-hidden="true" class="w-6 h-6 transition-transform group-hover:translate-x-3" fill="none"
                                     stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
                                         d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -553,7 +573,7 @@
         <!-- Square Grid (Text-only cards, matches certifications layout and size) -->
         <div class="flex flex-col sm:flex-row gap-8 max-w-md mx-auto mt-20">
                             <div class="group flex-1 min-h-[280px] bg-[var(--bg-alt)] flex flex-col justify-between p-10 neo-border neo-shadow cursor-pointer hover:border-[var(--accent)] transition-all font-display"
-                    @click="expandedAchievement = {&quot;id&quot;:1,&quot;title&quot;:&quot;Helium Challenge Batch 3 - Pentest Competition&quot;,&quot;platform&quot;:&quot;Cyber Academy Indonesia&quot;,&quot;desc&quot;:&quot;Conducted end-to-end web application penetration testing during the Helium Challenge competition, including vulnerability discovery, exploit development, and privilege escalation, then documented the findings in a professional security assessment report. Ranked 9th out of all finalists with a score of 92.60.&quot;,&quot;img_cert&quot;:&quot;\/images\/achievements\/Sertifikat-Helium Challenge.png&quot;,&quot;img_leaderboard&quot;:&quot;\/images\/achievements\/Leaderboard-Helium-Challenge.png&quot;}">
+                    @click="expandedAchievement = {&quot;id&quot;:1,&quot;title&quot;:&quot;Helium Challenge Batch 3 - Pentest Competition&quot;,&quot;platform&quot;:&quot;Cyber Academy Indonesia&quot;,&quot;desc&quot;:&quot;Conducted end-to-end web application penetration testing during the Helium Challenge competition, including vulnerability discovery, exploit development, and privilege escalation, then documented the findings in a professional security assessment report. Ranked 9th out of all finalists with a score of 92.60.&quot;,&quot;img_cert&quot;:&quot;\/images\/achievements\/Sertifikat-Helium-Challenge.webp&quot;,&quot;img_leaderboard&quot;:&quot;\/images\/achievements\/Leaderboard-Helium-Challenge.webp&quot;}">
 
                     <div class="flex flex-col items-center">
                         <div
@@ -570,7 +590,7 @@
                         <p
                             class="text-xs font-black text-[var(--text-dim)] group-hover:text-[var(--text-main)] transition-colors tracking-[0.3em] uppercase flex items-center gap-3">
                             View Achievement
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
                                     d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
@@ -594,7 +614,7 @@
                     <!-- Close button -->
                     <button @click="expandedAchievement = null"
                         class="fixed top-4 right-4 z-[110] sm:top-8 sm:right-8 p-3 rounded-full bg-gray-100 hover:bg-gray-200 text-black transition-colors">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg aria-hidden="true" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -615,7 +635,7 @@
                                 <img :src="expandedAchievement?.img_leaderboard" :alt="expandedAchievement?.title"
                                     class="w-full object-contain max-h-[80vh] shadow-2xl transition-transform duration-500 group-hover/img:scale-[1.02]">
                                 <span
-                                    class="mt-4 text-[10px] font-black uppercase tracking-widest text-zinc-400 group-hover/img:text-[var(--accent)] transition-colors">Click
+                                    class="mt-4 text-[10px] font-black uppercase tracking-widest text-gray-600 group-hover/img:text-[var(--accent)] transition-colors">Click
                                     to Expand Leaderboard</span>
                             </div>
                         </div>
@@ -634,7 +654,7 @@
                                         alt="Certificate details">
                                 </div>
                                 <p
-                                    class="mt-2 text-center text-[9px] font-black uppercase tracking-widest text-zinc-400 group-hover/img:text-[var(--accent)] transition-colors">
+                                    class="mt-2 text-center text-[9px] font-black uppercase tracking-widest text-gray-600 group-hover/img:text-[var(--accent)] transition-colors">
                                     Click to Expand Certificate</p>
                             </div>
 
@@ -649,7 +669,7 @@
                                 <div class="mt-8 pt-6 border-t border-[var(--border)]/50">
                                     <button @click="expandedAchievement = null"
                                         class="text-sm font-black uppercase tracking-widest text-[var(--text-main)] hover:text-[var(--accent)] transition-colors flex items-center gap-3">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
                                                 d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                                         </svg>
@@ -674,7 +694,7 @@
 
                 <button @click="expandedImage = null"
                     class="absolute top-8 right-8 p-4 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all">
-                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg aria-hidden="true" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -706,6 +726,7 @@
                 :class="shown ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'">
                 <div class="flex items-center gap-6 relative">
                     <img src="/images/organization/logo-badan-mentoring.webp" alt="Logo Badan Mentoring"
+                        width="128" height="128" loading="lazy" decoding="async"
                         class="w-24 h-24 sm:w-32 sm:h-32 object-contain">
                     <div class="flex-1 relative min-w-0">
                         <h3
@@ -780,12 +801,14 @@
 
                                                                                                         <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-30"
                                         :class="spreading ? 'scale-110 !shadow-2xl rotate-0 -translate-y-8' : 'rotate-3'">
-                                        <img src="/images/organization/SM-1.webp" class="w-full h-full object-cover transition-all duration-700"
+                                        <img src="/images/organization/SM-1.webp" width="432" height="384" loading="lazy" decoding="async"
+                                            class="w-full h-full object-cover transition-all duration-700"
                                             :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
                                     </div>
                                                                                                         <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-20"
                                         :class="spreading ? '-translate-x-[110%] -rotate-6 scale-95 opacity-100' : '-rotate-6 translate-x-2 translate-y-2 opacity-40'">
-                                        <img src="/images/organization/SM-2.webp" class="w-full h-full object-cover transition-all duration-700"
+                                        <img src="/images/organization/SM-2.webp" width="432" height="384" loading="lazy" decoding="async"
+                                            class="w-full h-full object-cover transition-all duration-700"
                                             :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
                                     </div>
                                                             </div>
@@ -793,8 +816,10 @@
 
                         <!-- Mobile Images Section -->
                         <div class="md:hidden grid grid-cols-1 gap-6 mt-4 w-full">
-                                                            <img src="/images/organization/SM-1.webp" class="w-full aspect-video object-cover neo-border-sm">
-                                                            <img src="/images/organization/SM-2.webp" class="w-full aspect-video object-cover neo-border-sm">
+                                                            <img src="/images/organization/SM-1.webp" width="640" height="360" loading="lazy" decoding="async"
+                                    class="w-full aspect-video object-cover neo-border-sm">
+                                                            <img src="/images/organization/SM-2.webp" width="640" height="360" loading="lazy" decoding="async"
+                                    class="w-full aspect-video object-cover neo-border-sm">
                                                     </div>
                     </div>
                 </div>
@@ -857,12 +882,14 @@
 
                                                                                                         <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-30"
                                         :class="spreading ? 'scale-110 !shadow-2xl rotate-0 -translate-y-8' : 'rotate-3'">
-                                        <img src="/images/organization/ClosingICB-1.webp" class="w-full h-full object-cover transition-all duration-700"
+                                        <img src="/images/organization/ClosingICB-1.webp" width="432" height="384" loading="lazy" decoding="async"
+                                            class="w-full h-full object-cover transition-all duration-700"
                                             :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
                                     </div>
                                                                                                         <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-20"
                                         :class="spreading ? '-translate-x-[110%] -rotate-6 scale-95 opacity-100' : '-rotate-6 translate-x-2 translate-y-2 opacity-40'">
-                                        <img src="/images/organization/ClosingICB-2.webp" class="w-full h-full object-cover transition-all duration-700"
+                                        <img src="/images/organization/ClosingICB-2.webp" width="432" height="384" loading="lazy" decoding="async"
+                                            class="w-full h-full object-cover transition-all duration-700"
                                             :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
                                     </div>
                                                             </div>
@@ -870,8 +897,10 @@
 
                         <!-- Mobile Images Section -->
                         <div class="md:hidden grid grid-cols-1 gap-6 mt-4 w-full">
-                                                            <img src="/images/organization/ClosingICB-1.webp" class="w-full aspect-video object-cover neo-border-sm">
-                                                            <img src="/images/organization/ClosingICB-2.webp" class="w-full aspect-video object-cover neo-border-sm">
+                                                            <img src="/images/organization/ClosingICB-1.webp" width="640" height="360" loading="lazy" decoding="async"
+                                    class="w-full aspect-video object-cover neo-border-sm">
+                                                            <img src="/images/organization/ClosingICB-2.webp" width="640" height="360" loading="lazy" decoding="async"
+                                    class="w-full aspect-video object-cover neo-border-sm">
                                                     </div>
                     </div>
                 </div>
@@ -934,7 +963,8 @@
 
                                                                                                         <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-30"
                                         :class="spreading ? 'scale-110 !shadow-2xl rotate-0 -translate-y-8' : 'rotate-3'">
-                                        <img src="/images/organization/MGICB-1.webp" class="w-full h-full object-cover transition-all duration-700"
+                                        <img src="/images/organization/MGICB-1.webp" width="432" height="384" loading="lazy" decoding="async"
+                                            class="w-full h-full object-cover transition-all duration-700"
                                             :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
                                     </div>
                                                             </div>
@@ -942,7 +972,8 @@
 
                         <!-- Mobile Images Section -->
                         <div class="md:hidden grid grid-cols-1 gap-6 mt-4 w-full">
-                                                            <img src="/images/organization/MGICB-1.webp" class="w-full aspect-video object-cover neo-border-sm">
+                                                            <img src="/images/organization/MGICB-1.webp" width="640" height="360" loading="lazy" decoding="async"
+                                    class="w-full aspect-video object-cover neo-border-sm">
                                                     </div>
                     </div>
                 </div>
@@ -1005,12 +1036,14 @@
 
                                                                                                         <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-30"
                                         :class="spreading ? 'scale-110 !shadow-2xl rotate-0 -translate-y-8' : 'rotate-3'">
-                                        <img src="/images/organization/OpeningICB-2.webp" class="w-full h-full object-cover transition-all duration-700"
+                                        <img src="/images/organization/OpeningICB-2.webp" width="432" height="384" loading="lazy" decoding="async"
+                                            class="w-full h-full object-cover transition-all duration-700"
                                             :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
                                     </div>
                                                                                                         <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-20"
                                         :class="spreading ? '-translate-x-[110%] -rotate-6 scale-95 opacity-100' : '-rotate-6 translate-x-2 translate-y-2 opacity-40'">
-                                        <img src="/images/organization/OpeningICB-1.webp" class="w-full h-full object-cover transition-all duration-700"
+                                        <img src="/images/organization/OpeningICB-1.webp" width="432" height="384" loading="lazy" decoding="async"
+                                            class="w-full h-full object-cover transition-all duration-700"
                                             :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
                                     </div>
                                                             </div>
@@ -1018,8 +1051,10 @@
 
                         <!-- Mobile Images Section -->
                         <div class="md:hidden grid grid-cols-1 gap-6 mt-4 w-full">
-                                                            <img src="/images/organization/OpeningICB-2.webp" class="w-full aspect-video object-cover neo-border-sm">
-                                                            <img src="/images/organization/OpeningICB-1.webp" class="w-full aspect-video object-cover neo-border-sm">
+                                                            <img src="/images/organization/OpeningICB-2.webp" width="640" height="360" loading="lazy" decoding="async"
+                                    class="w-full aspect-video object-cover neo-border-sm">
+                                                            <img src="/images/organization/OpeningICB-1.webp" width="640" height="360" loading="lazy" decoding="async"
+                                    class="w-full aspect-video object-cover neo-border-sm">
                                                     </div>
                     </div>
                 </div>
@@ -1059,7 +1094,7 @@
                         <p
                             class="text-xs font-black text-[var(--text-dim)] group-hover:text-[var(--text-main)] transition-colors tracking-[0.3em] uppercase flex items-center gap-3">
                             View Certificate
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
                                     d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
@@ -1085,7 +1120,7 @@
                         <p
                             class="text-xs font-black text-[var(--text-dim)] group-hover:text-[var(--text-main)] transition-colors tracking-[0.3em] uppercase flex items-center gap-3">
                             View Certificate
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
                                     d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
@@ -1109,7 +1144,7 @@
                     <!-- Close button -->
                     <button @click="expandedCert = null"
                         class="fixed top-4 right-4 z-[110] sm:top-8 sm:right-8 p-3 rounded-full bg-gray-100 hover:bg-gray-200 text-black transition-colors">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg aria-hidden="true" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -1130,7 +1165,7 @@
                                 <img :src="expandedCert?.img_cert" :alt="expandedCert?.title"
                                     class="w-full object-contain max-h-[80vh] shadow-2xl transition-transform duration-500 group-hover/img:scale-[1.02]">
                                 <span
-                                    class="mt-4 text-[10px] font-black uppercase tracking-widest text-zinc-400 group-hover/img:text-[var(--accent)] transition-colors">Click
+                                    class="mt-4 text-[10px] font-black uppercase tracking-widest text-gray-600 group-hover/img:text-[var(--accent)] transition-colors">Click
                                     to Expand</span>
                             </div>
                         </div>
@@ -1152,7 +1187,7 @@
                                         alt="Leaderboard details">
                                 </div>
                                 <p
-                                    class="mt-2 text-center text-[9px] font-black uppercase tracking-widest text-zinc-400 group-hover/img:text-[var(--accent)] transition-colors">
+                                    class="mt-2 text-center text-[9px] font-black uppercase tracking-widest text-gray-600 group-hover/img:text-[var(--accent)] transition-colors">
                                     Click to Expand Achievement</p>
                             </div>
 
@@ -1167,7 +1202,7 @@
                                 <div class="mt-12 pt-8 border-t border-[var(--border)]/50">
                                     <button @click="expandedCert = null"
                                         class="text-sm font-black uppercase tracking-widest text-[var(--text-main)] hover:text-[var(--accent)] transition-colors flex items-center gap-3">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
                                                 d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                                         </svg>
@@ -1192,7 +1227,7 @@
 
                 <button @click="expandedImage = null"
                     class="absolute top-8 right-8 p-4 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all">
-                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg aria-hidden="true" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -1225,6 +1260,7 @@
                 <div
                     class="w-20 h-20 shrink-0 bg-transparent flex items-center justify-center rounded-none group-hover:scale-110 transition-all duration-500 overflow-hidden">
                     <img src="/images/university/university-logo.webp" alt="University Logo"
+                        width="80" height="80" loading="lazy" decoding="async"
                         class="w-full h-full object-contain mix-blend-multiply">
                 </div>
 
@@ -1265,7 +1301,7 @@
             <!-- Email -->
             <a href="mailto:rahadyadaffa@gmail.com"
                 class="flex items-center gap-4 px-8 py-4 neo-shadow border-2 border-[var(--border)] bg-white text-[var(--text-main)] hover:bg-[var(--accent)] hover:text-white hover:-translate-y-1 transition-all duration-300 group font-bold text-xl uppercase tracking-widest min-w-[220px]">
-                <svg class="w-8 h-8 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor"
+                <svg aria-hidden="true" class="w-8 h-8 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor"
                     viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
@@ -1277,7 +1313,7 @@
             <!-- LinkedIn -->
             <a href="https://www.linkedin.com/in/daffarahadya" target="_blank" rel="noopener"
                 class="flex items-center gap-4 px-8 py-4 neo-shadow border-2 border-[var(--border)] bg-white text-[var(--text-main)] hover:bg-[var(--accent)] hover:text-white hover:-translate-y-1 transition-all duration-300 group font-bold text-xl uppercase tracking-widest min-w-[220px]">
-                <svg class="w-8 h-8 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                <svg aria-hidden="true" class="w-8 h-8 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
                     <path fill-rule="evenodd"
                         d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
                         clip-rule="evenodd" />
@@ -1288,7 +1324,7 @@
             <!-- GitHub -->
             <a href="https://github.com/rahadyadaffa-glitch" target="_blank" rel="noopener"
                 class="flex items-center gap-4 px-8 py-4 neo-shadow border-2 border-[var(--border)] bg-white text-[var(--text-main)] hover:bg-[var(--accent)] hover:text-white hover:-translate-y-1 transition-all duration-300 group font-bold text-xl uppercase tracking-widest min-w-[220px]">
-                <svg class="w-8 h-8 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                <svg aria-hidden="true" class="w-8 h-8 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
                     <path fill-rule="evenodd"
                         d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
                         clip-rule="evenodd" />
@@ -1299,7 +1335,7 @@
             <!-- WhatsApp -->
             <a href="https://wa.me/6281343139894" target="_blank" rel="noopener"
                 class="flex items-center gap-4 px-8 py-4 neo-shadow border-2 border-[var(--border)] bg-white text-[var(--text-main)] hover:bg-[var(--accent)] hover:text-white hover:-translate-y-1 transition-all duration-300 group font-bold text-xl uppercase tracking-widest min-w-[220px]">
-                <svg class="w-8 h-8 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor"
+                <svg aria-hidden="true" class="w-8 h-8 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor"
                     viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
@@ -1313,10 +1349,9 @@
 </section>
     </main>
 
-    <footer class="bg-white text-gray-500 py-12 text-center border-t border-gray-200 mt-20" x-data="{ shown: false }"
+    <footer class="bg-white text-gray-600 py-12 text-center border-t border-gray-200 mt-20 transition-all duration-1000 delay-200" x-data="{ shown: false }"
         x-intersect.once.margin.-100px="shown = true"
-        :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'"
-        class="transition-all duration-1000 delay-200">
+        :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
         <p class="text-sm">&copy; 2026 Daffa Rahadya Atmawiguna. All rights reserved.</p>
     </footer>
 

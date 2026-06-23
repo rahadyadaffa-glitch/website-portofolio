@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daffa Rahadya Atmawiguna - Portfolio</title>
     <meta name="description" content="{{ __('messages.hero.tagline') }}">
+    <meta name="theme-color" content="#F9F8F6">
+    <meta name="robots" content="index, follow">
 
     <!-- Hide Alpine.js version from scanners (Information Leakage Mitigation) -->
     <script>
@@ -34,12 +36,19 @@
     <!-- Alpine.js Core -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-    <!-- Google Fonts: Space Grotesk & Inter -->
+    <!-- Google Fonts: preload for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap"
+            rel="stylesheet">
+    </noscript>
 
     <style>
         :root {
@@ -258,18 +267,23 @@
 </head>
 
 <body class="bg-white text-gray-900 antialiased" x-data="{ expandedCert: null, expandedAchievement: null }">
+    <!-- Skip to content link (keyboard accessibility) -->
+    <a href="#main-content"
+        class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-[var(--accent)] focus:text-white focus:font-bold focus:text-sm">
+        Skip to main content
+    </a>
+
     <div class="grain"></div>
 
     <x-navigation />
 
-    <main class="overflow-x-clip">
+    <main id="main-content" class="overflow-x-clip">
         {{ $slot }}
     </main>
 
-    <footer class="bg-white text-gray-500 py-12 text-center border-t border-gray-200 mt-20" x-data="{ shown: false }"
+    <footer class="bg-white text-gray-600 py-12 text-center border-t border-gray-200 mt-20 transition-all duration-1000 delay-200" x-data="{ shown: false }"
         x-intersect.once.margin.-100px="shown = true"
-        :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'"
-        class="transition-all duration-1000 delay-200">
+        :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
         <p class="text-sm">&copy; {{ date('Y') }} Daffa Rahadya Atmawiguna. All rights reserved.</p>
     </footer>
 

@@ -51,7 +51,7 @@
                             <div
                                 class="mt-12 inline-flex items-center gap-3 font-black text-[var(--text-main)] border-b-4 border-[var(--accent)] pb-2 transition-all group-hover:border-[var(--text-main)] uppercase tracking-[0.2em] text-sm">
                                 Browse on GitHub
-                                <svg class="w-6 h-6 transition-transform group-hover:translate-x-3" fill="none"
+                                <svg aria-hidden="true" class="w-6 h-6 transition-transform group-hover:translate-x-3" fill="none"
                                     stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
                                         d="M17 8l4 4m0 0l-4 4m4-4H3" />

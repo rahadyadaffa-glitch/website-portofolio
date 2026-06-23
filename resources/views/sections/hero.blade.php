@@ -34,7 +34,7 @@
                     <a href="/images/cv/CV_Daffa Rahadya Atmawiguna.pdf" download
                         class="px-6 py-4 sm:px-10 sm:py-5 bg-white text-[var(--text-main)] font-bold text-lg sm:text-xl neo-shadow neo-shadow-hover border-2 border-[var(--border)] uppercase tracking-widest hover:bg-gray-50 transition-all flex items-center gap-2">
                         {{ __('messages.hero.cta_cv') }}
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg aria-hidden="true" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                         </svg>
@@ -48,6 +48,8 @@
                     <div
                         class="w-full h-full overflow-hidden grayscale contrast-110 hover:grayscale-0 transition-all duration-1000">
                         <img src="/images/about/profile.webp" alt="Daffa Rahadya Atmawiguna"
+                            width="320" height="320"
+                            fetchpriority="high" decoding="async"
                             class="object-cover w-full h-full">
                     </div>
                     <!-- Decorative Tan Square -->
@@ -74,7 +76,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
                 <span
-                    class="text-sm font-bold text-gray-400 uppercase block mb-4">{{ __('messages.hero.skills_pentest') }}</span>
+                    class="text-sm font-bold text-gray-600 uppercase block mb-4">{{ __('messages.hero.skills_pentest') }}</span>
                 <div class="flex flex-wrap gap-4">
                     <span
                         class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Sqlmap</span>
@@ -98,7 +100,7 @@
 
             <div>
                 <span
-                    class="text-sm font-bold text-gray-400 uppercase block mb-4">{{ __('messages.hero.skills_soc') }}</span>
+                    class="text-sm font-bold text-gray-600 uppercase block mb-4">{{ __('messages.hero.skills_soc') }}</span>
                 <div class="flex flex-wrap gap-4">
                     <span
                         class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Wireshark</span>
@@ -109,7 +111,7 @@
 
             <div>
                 <span
-                    class="text-sm font-bold text-gray-400 uppercase block mb-4">{{ __('messages.hero.skills_os') }}</span>
+                    class="text-sm font-bold text-gray-600 uppercase block mb-4">{{ __('messages.hero.skills_os') }}</span>
                 <div class="flex flex-wrap gap-4">
                     <span
                         class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Linux</span>

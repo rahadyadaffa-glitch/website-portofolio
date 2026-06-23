@@ -76,6 +76,7 @@
                 :class="shown ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'">
                 <div class="flex items-center gap-6 relative">
                     <img src="/images/organization/logo-badan-mentoring.webp" alt="Logo Badan Mentoring"
+                        width="128" height="128" loading="lazy" decoding="async"
                         class="w-24 h-24 sm:w-32 sm:h-32 object-contain">
                     <div class="flex-1 relative min-w-0">
                         <h3
@@ -165,7 +166,8 @@
                                     @endphp
                                     <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 {{ $zIndices[$imgIndex] ?? 'z-0' }}"
                                         :class="spreading ? '{{ $spreadTransforms[$imgIndex] ?? '' }}' : '{{ $idleTransforms[$imgIndex] ?? '' }}'">
-                                        <img src="{{ $imgUrl }}" class="w-full h-full object-cover transition-all duration-700"
+                                        <img src="{{ $imgUrl }}" width="432" height="384" loading="lazy" decoding="async"
+                                            class="w-full h-full object-cover transition-all duration-700"
                                             :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
                                     </div>
                                 @endforeach
@@ -175,7 +177,8 @@
                         <!-- Mobile Images Section -->
                         <div class="md:hidden grid grid-cols-1 gap-6 mt-4 w-full">
                             @foreach($item['images'] as $img)
-                                <img src="{{ $img }}" class="w-full aspect-video object-cover neo-border-sm">
+                                <img src="{{ $img }}" width="640" height="360" loading="lazy" decoding="async"
+                                    class="w-full aspect-video object-cover neo-border-sm">
                             @endforeach
                         </div>
                     </div>
