@@ -1,10 +1,10 @@
-<section id="organization" class="py-24 bg-transparent" x-data="{ shown: false }"
+<section id="organization" class="py-20 sm:py-24 bg-transparent" x-data="{ shown: false }"
     x-intersect.once.margin.-100px="shown = true">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="mb-24 transition-all duration-1000"
             :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
-            <h2 class="text-5xl sm:text-7xl font-black text-[var(--text-main)] tracking-tighter uppercase mb-2">
+            <h2 class="text-3xl sm:text-7xl font-black text-[var(--text-main)] tracking-tighter uppercase mb-2">
                 {{ __('messages.section_titles.organization') }}
             </h2>
             <div class="w-32 h-2 bg-[var(--accent)]"></div>
@@ -72,14 +72,14 @@
             @endphp
 
             <!-- Whiteboard Title -->
-            <div class="mb-20 pl-8 md:pl-24 transition-all duration-1000 delay-300"
+            <div class="mb-20 pl-0 md:pl-24 transition-all duration-1000 delay-300"
                 :class="shown ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'">
                 <div class="flex items-center gap-6 relative">
                     <img src="/images/organization/logo-badan-mentoring.webp" alt="Logo Badan Mentoring"
                         class="w-24 h-24 sm:w-32 sm:h-32 object-contain">
-                    <div class="inline-block relative">
+                    <div class="flex-1 relative min-w-0">
                         <h3
-                            class="text-4xl sm:text-6xl font-black text-[var(--text-main)] tracking-tight uppercase leading-none">
+                            class="text-xl sm:text-6xl font-black text-[var(--text-main)] tracking-tight uppercase leading-none">
                             Badan Mentoring</h3>
                         <div
                             class="absolute -bottom-4 left-0 w-full h-1.5 bg-[var(--accent)] transform -rotate-1 opacity-60">
@@ -109,7 +109,7 @@
                         <div class="w-full md:w-[45rem] relative pt-8 transition-all duration-1000 ease-out"
                             :class="spreading ? 'opacity-10 blur-md -translate-x-20 scale-95 pointer-events-none' : (itemShown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20')">
                             <div class="tape-piece"></div>
-                            <div class="neo-paper p-10 sm:p-12 paper-texture relative z-20"
+                            <div class="neo-paper p-6 sm:p-12 paper-texture relative z-20"
                                 style="transform: rotate({{ $rot }})">
                                 <div class="mb-8 pb-6 border-b-2 border-[var(--border)]/30">
                                     <h4

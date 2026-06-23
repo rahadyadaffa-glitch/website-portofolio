@@ -1,10 +1,10 @@
-<section id="certificate" class="py-32 relative bg-transparent" x-data="{ shown: false, expandedImage: null }"
+<section id="certificate" class="py-24 sm:py-32 relative bg-transparent" x-data="{ shown: false, expandedImage: null }"
     x-intersect.once.margin.-100px="shown = true">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000"
         :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
 
         <div class="mb-24">
-            <h2 class="text-5xl sm:text-7xl font-black text-[var(--text-main)] tracking-tighter uppercase mb-2">
+            <h2 class="text-4xl sm:text-7xl font-black text-[var(--text-main)] tracking-tighter uppercase mb-2">
                 {{ __('messages.section_titles.certificate') }}
             </h2>
             <div class="w-32 h-2 bg-[var(--accent)]"></div>
@@ -67,19 +67,18 @@
 
         <!-- Alpine.js Modal Lightbox -->
         <template x-teleport="body">
-            <div x-show="expandedCert" style="display: none;"
-                class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8" aria-labelledby="modal-title"
-                role="dialog" aria-modal="true"
+            <div x-show="expandedCert" style="display: none;" class="fixed inset-0 z-[100] overflow-y-auto"
+                aria-labelledby="modal-title" role="dialog" aria-modal="true"
                 x-effect="expandedCert ? document.body.classList.add('overflow-hidden') : document.body.classList.remove('overflow-hidden')">
                 <!-- Backdrop -->
                 <div x-show="expandedCert" x-transition.opacity class="fixed inset-0 bg-white/95 backdrop-blur-sm"
                     @click="expandedCert = null"></div>
 
-                <div class="flex min-h-full items-center justify-center p-4 sm:p-8 relative">
+                <div class="flex min-h-full items-center justify-center p-4 sm:p-6 lg:p-8 relative z-10">
 
                     <!-- Close button -->
                     <button @click="expandedCert = null"
-                        class="fixed top-8 right-8 z-[110] p-3 rounded-full bg-gray-100 hover:bg-gray-200 text-black transition-colors">
+                        class="fixed top-4 right-4 z-[110] sm:top-8 sm:right-8 p-3 rounded-full bg-gray-100 hover:bg-gray-200 text-black transition-colors">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M6 18L18 6M6 6l12 12" />
@@ -96,7 +95,8 @@
                         <!-- LEFT PANEL (50%): Main Certificate -->
                         <div class="w-full lg:w-1/2 bg-white p-6 sm:p-12 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-[var(--border)] cursor-zoom-in group/img"
                             @click="expandedImage = expandedCert?.img_cert">
-                            <div class="w-full h-full flex flex-col items-center justify-center min-h-[400px]">
+                            <div
+                                class="w-full h-full flex flex-col items-center justify-center min-h-[250px] lg:min-h-[400px]">
                                 <img :src="expandedCert?.img_cert" :alt="expandedCert?.title"
                                     class="w-full object-contain max-h-[80vh] shadow-2xl transition-transform duration-500 group-hover/img:scale-[1.02]">
                                 <span

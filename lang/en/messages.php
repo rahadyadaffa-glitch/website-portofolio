@@ -6,6 +6,7 @@ return [
         'portfolio' => 'Portfolio',
         'organization' => 'Organization',
         'certificates' => 'Certificates',
+        'achievements' => 'Achievements',
         'university' => 'University',
         'skills' => 'Skills',
         'contact' => 'Contact',
@@ -14,8 +15,8 @@ return [
     'hero' => [
         'headline' => 'Aspiring Web Pentest & SOC Analyst',
         'tagline' => 'Aspiring Web Pentest & SOC Analyst focusing on Penetration Testing and Security Operations Center.',
-        'bio1' => 'I am an Informatics student at Telkom University, currently focusing on Penetration Testing and Security Operations Center (SOC). Although I do not yet have formal work experience, I have consistently honed my technical skills through intensive laboratory simulations and various academic projects.',
-        'bio2' => 'To sharpen my analytical and problem-solving skills, I actively explore challenges on various CTF platforms. Through these activities, I have learned to identify vulnerabilities and understand system defense mechanisms in depth. I am an adaptable individual, staying current with the latest cyber threats and ready to provide technical contributions in a professional environment.',
+        'bio1' => 'Informatics student at Telkom University with a focus on Penetration Testing and SOC. I build my skills through lab simulations, academic projects, and CTF competitions, constantly learning new attack and defense techniques  ready to bring that curiosity and adaptability to a professional team.',
+        'bio2' => '',
         'cta_portfolio' => 'View Portfolio',
         'cta_cv' => 'Download CV',
         'cta_view_cv' => 'View CV',
@@ -26,7 +27,8 @@ return [
     'section_titles' => [
         'portfolio' => 'Portfolio',
         'organization' => 'Organization',
-        'certificate' => 'Certifications & Achievements',
+        'certificate' => 'Certifications',
+        'achievement' => 'Achievements',
         'university' => 'Education',
     ],
     'university' => [

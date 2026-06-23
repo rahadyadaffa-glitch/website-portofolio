@@ -1,0 +1,165 @@
+<section id="achievement" class="py-24 sm:py-32 relative bg-transparent" x-data="{ shown: false, expandedImage: null }"
+    x-intersect.once.margin.-100px="shown = true">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000"
+        :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+
+        <div class="mb-24">
+            <h2 class="text-4xl sm:text-7xl font-black text-[var(--text-main)] tracking-tighter uppercase mb-2">
+                {{ __('messages.section_titles.achievement') }}
+            </h2>
+            <div class="w-32 h-2 bg-[var(--accent)]"></div>
+        </div>
+
+        @php
+            $achievements = [
+                [
+                    'id' => 1,
+                    'title' => 'Helium Challenge Batch 3 - Pentest Competition',
+                    'platform' => 'Cyber Academy Indonesia',
+                    'desc' => 'Conducted end-to-end web application penetration testing during the Helium Challenge competition, including vulnerability discovery, exploit development, and privilege escalation, then documented the findings in a professional security assessment report. Ranked 9th out of all finalists with a score of 92.60.',
+                    'img_cert' => '/images/achievements/Sertifikat-Helium Challenge.png',
+                    'img_leaderboard' => '/images/achievements/Leaderboard-Helium-Challenge.png',
+                ]
+            ];
+        @endphp
+
+        <!-- Square Grid (Text-only cards, matches certifications layout and size) -->
+        <div class="flex flex-col sm:flex-row gap-8 max-w-md mx-auto mt-20">
+            @foreach($achievements as $ach)
+                <div class="group flex-1 min-h-[280px] bg-[var(--bg-alt)] flex flex-col justify-between p-10 neo-border neo-shadow cursor-pointer hover:border-[var(--accent)] transition-all font-display"
+                    @click="expandedAchievement = {{ json_encode($ach) }}">
+
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="mb-6 px-5 py-2 bg-[var(--bg-alt)] border-2 border-[var(--border)] text-xs font-black uppercase tracking-widest text-[var(--text-main)] shadow-sm">
+                            {{ $ach['platform'] }}
+                        </div>
+                        <h3
+                            class="text-xl sm:text-2xl font-black text-[var(--text-main)] text-center leading-snug tracking-tighter group-hover:text-[var(--accent)] transition-colors">
+                            {{ $ach['title'] }}
+                        </h3>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                        <p
+                            class="text-xs font-black text-[var(--text-dim)] group-hover:text-[var(--text-main)] transition-colors tracking-[0.3em] uppercase flex items-center gap-3">
+                            View Achievement
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </p>
+                    </div>
+
+                </div>
+            @endforeach
+        </div>
+
+        <!-- Alpine.js Modal Lightbox -->
+        <template x-teleport="body">
+            <div x-show="expandedAchievement" style="display: none;" class="fixed inset-0 z-[100] overflow-y-auto"
+                aria-labelledby="modal-title" role="dialog" aria-modal="true"
+                x-effect="expandedAchievement ? document.body.classList.add('overflow-hidden') : document.body.classList.remove('overflow-hidden')">
+                <!-- Backdrop -->
+                <div x-show="expandedAchievement" x-transition.opacity
+                    class="fixed inset-0 bg-white/95 backdrop-blur-sm" @click="expandedAchievement = null"></div>
+
+                <div class="flex min-h-full items-center justify-center p-4 sm:p-6 lg:p-8 relative z-10">
+
+                    <!-- Close button -->
+                    <button @click="expandedAchievement = null"
+                        class="fixed top-4 right-4 z-[110] sm:top-8 sm:right-8 p-3 rounded-full bg-gray-100 hover:bg-gray-200 text-black transition-colors">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+
+                    <!-- Modal Panel -->
+                    <div x-show="expandedAchievement" x-transition:enter="ease-out duration-500"
+                        x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="ease-in duration-300" x-transition:leave-start="opacity-100 scale-100"
+                        x-transition:leave-end="opacity-0 scale-95"
+                        class="relative w-full max-w-7xl z-10 flex flex-col lg:flex-row gap-0 bg-[var(--bg)] neo-shadow neo-border overflow-hidden">
+
+                        <!-- LEFT PANEL (50%): Main Leaderboard Screenshot -->
+                        <div class="w-full lg:w-1/2 bg-white p-6 sm:p-12 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-[var(--border)] cursor-zoom-in group/img"
+                            @click="expandedImage = expandedAchievement?.img_leaderboard">
+                            <div
+                                class="w-full h-full flex flex-col items-center justify-center min-h-[250px] lg:min-h-[400px]">
+                                <img :src="expandedAchievement?.img_leaderboard" :alt="expandedAchievement?.title"
+                                    class="w-full object-contain max-h-[80vh] shadow-2xl transition-transform duration-500 group-hover/img:scale-[1.02]">
+                                <span
+                                    class="mt-4 text-[10px] font-black uppercase tracking-widest text-zinc-400 group-hover/img:text-[var(--accent)] transition-colors">Click
+                                    to Expand Leaderboard</span>
+                            </div>
+                        </div>
+
+                        <!-- RIGHT PANEL (50%): Certificate + Details -->
+                        <div class="w-full lg:w-1/2 flex flex-col bg-[var(--bg-alt)]">
+
+                            <!-- Top: Certificate Image (Compact preview) -->
+                            <div x-show="expandedAchievement?.img_cert"
+                                class="w-full p-6 border-b border-[var(--border)] bg-white/50 cursor-zoom-in group/img"
+                                @click="expandedImage = expandedAchievement?.img_cert">
+                                <div
+                                    class="w-full min-h-[180px] flex items-center justify-center overflow-hidden neo-border bg-white shadow-inner">
+                                    <img :src="expandedAchievement?.img_cert"
+                                        class="w-full h-auto max-h-[30vh] object-contain transition-transform duration-500 group-hover/img:scale-[1.05]"
+                                        alt="Certificate details">
+                                </div>
+                                <p
+                                    class="mt-2 text-center text-[9px] font-black uppercase tracking-widest text-zinc-400 group-hover/img:text-[var(--accent)] transition-colors">
+                                    Click to Expand Certificate</p>
+                            </div>
+
+                            <!-- Bottom: Text Details -->
+                            <div class="flex-1 p-6 sm:p-10 flex flex-col justify-center">
+                                <div class="w-10 h-1 bg-[var(--accent)] mb-6"></div>
+                                <h3 class="text-xl sm:text-3xl font-black text-[var(--text-main)] mb-4 tracking-tighter uppercase leading-snug"
+                                    x-text="expandedAchievement?.title"></h3>
+                                <p class="text-[var(--text-dim)] text-base leading-relaxed italic"
+                                    x-text="expandedAchievement?.desc"></p>
+
+                                <div class="mt-8 pt-6 border-t border-[var(--border)]/50">
+                                    <button @click="expandedAchievement = null"
+                                        class="text-sm font-black uppercase tracking-widest text-[var(--text-main)] hover:text-[var(--accent)] transition-colors flex items-center gap-3">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                                d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                                        </svg>
+                                        Back to Gallery
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Full-Screen Image Lightbox (Second Level) -->
+        <template x-teleport="body">
+            <div x-show="expandedImage" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
+                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" style="display: none;"
+                class="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/95 backdrop-blur-md">
+
+                <button @click="expandedImage = null"
+                    class="absolute top-8 right-8 p-4 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
+                <div class="w-full h-full flex items-center justify-center p-8" @click="expandedImage = null">
+                    <img :src="expandedImage" class="max-w-full max-h-full object-contain shadow-2xl" @click.stop>
+                </div>
+            </div>
+        </template>
+
+    </div>
+</section>

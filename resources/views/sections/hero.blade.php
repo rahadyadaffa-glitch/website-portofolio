@@ -1,5 +1,5 @@
 <!-- About Section -->
-<section id="about" class="pt-48 pb-24 relative overflow-hidden" x-data="{ shown: false }"
+<section id="about" class="pt-0 sm:pt-16 pb-24 relative" x-data="{ shown: false }"
     x-intersect.once.margin.-100px="shown = true">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -24,18 +24,20 @@
 
                 <div class="space-y-6 text-[var(--text-dim)] mb-16 text-xl leading-relaxed font-medium max-w-2xl">
                     <p>{{ __('messages.hero.bio1') }}</p>
-                    <p>{{ __('messages.hero.bio2') }}</p>
                 </div>
 
                 <div class="flex flex-wrap gap-6">
                     <a href="#portfolio"
-                        class="px-10 py-5 bg-[var(--accent)] text-white font-bold text-xl neo-shadow neo-shadow-hover neo-border-accent uppercase tracking-widest hover:brightness-110 transition-all">
+                        class="px-6 py-4 sm:px-10 sm:py-5 bg-[var(--accent)] text-white font-bold text-lg sm:text-xl neo-shadow neo-shadow-hover neo-border-accent uppercase tracking-widest hover:brightness-110 transition-all">
                         {{ __('messages.hero.cta_portfolio') }}
                     </a>
                     <a href="/images/cv/CV_Daffa Rahadya Atmawiguna.pdf" download
-                        class="px-10 py-5 bg-white text-[var(--text-main)] font-bold text-xl neo-shadow neo-shadow-hover border-2 border-[var(--border)] uppercase tracking-widest hover:bg-gray-50 transition-all flex items-center gap-2">
+                        class="px-6 py-4 sm:px-10 sm:py-5 bg-white text-[var(--text-main)] font-bold text-lg sm:text-xl neo-shadow neo-shadow-hover border-2 border-[var(--border)] uppercase tracking-widest hover:bg-gray-50 transition-all flex items-center gap-2">
                         {{ __('messages.hero.cta_cv') }}
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        </svg>
                     </a>
                 </div>
             </div>
@@ -45,7 +47,8 @@
                 <div class="w-[85%] aspect-[4/5] bg-[var(--bg-alt)] relative p-4 neo-shadow neo-border">
                     <div
                         class="w-full h-full overflow-hidden grayscale contrast-110 hover:grayscale-0 transition-all duration-1000">
-                        <img src="/images/about/profile.webp" alt="Daffa Rahadya Atmawiguna" class="object-cover w-full h-full">
+                        <img src="/images/about/profile.webp" alt="Daffa Rahadya Atmawiguna"
+                            class="object-cover w-full h-full">
                     </div>
                     <!-- Decorative Tan Square -->
                     <div
@@ -59,7 +62,7 @@
 </section>
 
 <!-- Dedicated Skills Section -->
-<section id="skills" class="py-32 bg-[#fafafa] border-t border-gray-100 relative" x-data="{ shown: false }"
+<section id="skills" class="py-24 sm:py-32 bg-[#fafafa] border-t border-gray-100 relative" x-data="{ shown: false }"
     x-intersect.once.margin.-100px="shown = true">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000"
         :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">

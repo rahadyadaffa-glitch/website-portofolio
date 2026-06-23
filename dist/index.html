@@ -1,11 +1,34 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth bg-white">
+<html lang="id" class="scroll-smooth scroll-pt-20 sm:scroll-pt-28 bg-white">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daffa Rahadya - Portfolio</title>
-    <meta name="description" content="Menjembatani kesenjangan antara pengembangan software dan offensive security.">
-    
+    <title>Daffa Rahadya Atmawiguna - Portfolio</title>
+    <meta name="description" content="Mahasiswa Informatika &amp; Cybersecurity Enthusiast yang berfokus pada Penetration Testing dan Security Operations Center.">
+
+    <!-- Hide Alpine.js version from scanners (Information Leakage Mitigation) -->
+    <script>
+        (function () {
+            let _alpine;
+            Object.defineProperty(window, 'Alpine', {
+                get() { return _alpine; },
+                set(val) {
+                    _alpine = val;
+                    if (_alpine) {
+                        try {
+                            Object.defineProperty(_alpine, 'version', {
+                                get: () => undefined,
+                                configurable: true
+                            });
+                        } catch (e) { }
+                    }
+                },
+                configurable: true
+            });
+        })();
+    </script>
+
     <!-- Alpine.js Plugins -->
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
     <!-- Alpine.js Core -->
@@ -14,7 +37,9 @@
     <!-- Google Fonts: Space Grotesk & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap"
+        rel="stylesheet">
 
     <style>
         :root {
@@ -23,19 +48,28 @@
             --accent: #C9B59C;
             --accent-glow: rgba(201, 181, 156, 0.3);
             --border: #D9CFC7;
-            --text-main: #1A1A1A; /* Pure professional black */
-            --text-dim: #4B4B4B; /* Dark charcoal */
+            --text-main: #1A1A1A;
+            /* Pure professional black */
+            --text-dim: #4B4B4B;
+            /* Dark charcoal */
             --lux-ease: cubic-bezier(0.65, 0, 0.35, 1);
         }
-        body { 
-            font-family: 'Inter', sans-serif; 
+
+        body {
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg);
             color: var(--text-main);
             /* Designer Grid Pattern (Stone) */
             background-image: radial-gradient(var(--border) 1px, transparent 1px);
             background-size: 40px 40px;
         }
-        h1, h2, h3, .font-display { font-family: 'Space Grotesk', sans-serif; }
+
+        h1,
+        h2,
+        h3,
+        .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
 
         .grain {
             position: fixed;
@@ -53,17 +87,28 @@
             box-shadow: 8px 8px 0px 0px var(--border);
             transition: all 0.3s var(--lux-ease);
         }
+
         .neo-shadow-hover:hover {
             box-shadow: 12px 12px 0px 0px var(--accent);
             transform: translate(-4px, -4px);
         }
-        
+
         .neo-border {
             border: 3px solid var(--border);
         }
+
+        .neo-border-sm {
+            border: 1px solid var(--border);
+        }
+
+        .neo-border-md {
+            border: 2px solid var(--border);
+        }
+
         .neo-border-accent {
             border: 3px solid var(--accent);
         }
+
         .neo-border-black {
             border: 3px solid var(--text-main);
         }
@@ -76,12 +121,14 @@
             transform: translateX(-50%) rotate(-2deg);
             width: 140px;
             height: 38px;
-            background-color: rgba(217, 207, 199, 0.45); /* Muted Stone/Wash color */
+            background-color: rgba(217, 207, 199, 0.45);
+            /* Muted Stone/Wash color */
             backdrop-filter: blur(2px);
             z-index: 40;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
+
         .tape-piece::before {
             content: '';
             position: absolute;
@@ -99,6 +146,7 @@
             box-shadow: 4px 4px 0px 0px var(--border);
             transition: all 0.5s var(--lux-ease);
         }
+
         .neo-paper:hover {
             box-shadow: 8px 8px 0px 0px var(--accent);
             transform: translate(-2px, -2px) rotate(0deg) !important;
@@ -108,6 +156,7 @@
             position: relative;
             display: inline-block;
         }
+
         .glitch-text::before,
         .glitch-text::after {
             content: attr(data-text);
@@ -119,141 +168,215 @@
             opacity: 0.8;
             clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
         }
+
         .glitch:hover .glitch-text::before {
             animation: glitch-anim 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
             color: #ff00ff;
             z-index: -1;
             transform: translate(-2px, 2px);
         }
+
         .glitch:hover .glitch-text::after {
             animation: glitch-anim 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
             color: #00ffff;
             z-index: -2;
             transform: translate(2px, -2px);
         }
+
         @keyframes glitch-anim {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
+            0% {
+                transform: translate(0);
+            }
+
+            20% {
+                transform: translate(-2px, 2px);
+            }
+
+            40% {
+                transform: translate(-2px, -2px);
+            }
+
+            60% {
+                transform: translate(2px, 2px);
+            }
+
+            80% {
+                transform: translate(2px, -2px);
+            }
+
+            100% {
+                transform: translate(0);
+            }
         }
+
         .text-outline {
             -webkit-text-stroke: 1.5px black;
             color: transparent;
             transition: all 0.7s var(--lux-ease);
         }
+
         .glitch:hover .text-outline {
             -webkit-text-stroke: 1.5px transparent;
             color: black;
         }
-        
+
         /* High-end utilities */
-        .transition-lux { transition: all 0.7s var(--lux-ease); }
+        .transition-lux {
+            transition: all 0.7s var(--lux-ease);
+        }
+
+        /* Navbar offset — push main content below fixed nav */
+        main {
+            padding-top: 7.5rem; /* 120px = navbar(64) + ~56px gap (~1.5cm) on mobile */
+        }
+
+        @media (min-width: 640px) {
+            main {
+                padding-top: 6rem; /* 96px = h-24 desktop nav at top */
+            }
+        }
     </style>
 
     <!-- Vite / Tailwind -->
-            <script src="https://cdn.tailwindcss.com"></script>
-        <script>
-            tailwind.config = {
-                theme: {
-                    extend: {
-                        colors: {
-                            primary: '#111111',
-                            accent: '#2563eb' // subtle blue accent for links
-                        }
-                    }
-                }
-            }
-        </script>
-    </head>
-<body class="bg-white text-gray-900 antialiased" x-data="{ expandedCert: null }">
+            <link rel="preload" as="style" href="http://vibecode-porto.test/build/assets/app-45xdUzH2.css" /><link rel="modulepreload" as="script" href="http://vibecode-porto.test/build/assets/app-BU6mFzGd.js" /><link rel="stylesheet" href="http://vibecode-porto.test/build/assets/app-45xdUzH2.css" /><script type="module" src="http://vibecode-porto.test/build/assets/app-BU6mFzGd.js"></script>    </head>
+
+<body class="bg-white text-gray-900 antialiased" x-data="{ expandedCert: null, expandedAchievement: null }">
     <div class="grain"></div>
 
-    <nav class="bg-[var(--bg)]/90 backdrop-blur-xl border-b border-[var(--border)] z-50 fixed top-0 w-full" x-data="{ atTop: true }" @scroll.window="atTop = (window.pageYOffset > 20) ? false : true">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300" :class="atTop ? 'h-24' : 'h-16'">
+    <nav class="bg-[var(--bg)]/90 backdrop-blur-xl border-b border-[var(--border)] z-50 fixed top-0 w-full"
+    x-data="{ atTop: true, mobileMenuOpen: false }" @scroll.window="atTop = (window.pageYOffset > 20) ? false : true">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300" :class="atTop ? 'h-16 sm:h-24' : 'h-16'">
         <div class="flex justify-between items-center h-full">
-            
+
             <!-- Logo Section -->
             <div class="flex items-center">
-                <a href="#" class="font-black text-3xl tracking-tighter text-[var(--accent)]">Daffa.</a>
+                <a href="#" class="font-black text-2xl sm:text-3xl tracking-tighter text-black">Daffa.</a>
             </div>
 
             <!-- Desktop Menu -->
             <div class="hidden lg:flex items-center space-x-8">
-                <a href="#about" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">Tentang</a>
-                <a href="#skills" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">Skills</a>
-                <a href="#portfolio" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">Portofolio</a>
-                <a href="#organization" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">Organisasi</a>
-                <a href="#education" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">Universitas</a>
-                <a href="#contact" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">Contact</a>
-                
-                <div class="h-6 w-px bg-[var(--border)]"></div>
+                <a href="#about"
+                    class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">Tentang</a>
+                <a href="#skills"
+                    class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">Skills</a>
+                <a href="#portfolio"
+                    class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">Portofolio</a>
+                <a href="#achievement" class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">Prestasi</a>
+                <a href="#organization"
+                    class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">Organisasi</a>
+                <a href="#certificate"
+                    class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">Sertifikat</a>
+                <a href="#education"
+                    class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">Universitas</a>
+                <a href="#contact"
+                    class="text-xs font-black uppercase tracking-widest text-[var(--text-dim)] hover:text-[var(--accent)] transition-all">Contact</a>
 
-                <!-- Language Switcher -->
-                <div class="flex items-center gap-4">
-                    <a href="http://vibecode-porto.test" class="text-xs font-black text-[var(--text-main)] underline decoration-[var(--accent)] decoration-2">ID</a>
-                    <span class="text-[var(--border)]">/</span>
-                    <a href="http://vibecode-porto.test/en" class="text-xs font-black text-[var(--text-dim)] hover:text-[var(--text-main)]">EN</a>
-                </div>
             </div>
 
-            <!-- Mobile Menu Toggles (stub) -->
-            <div class="lg:hidden">
+            <!-- Mobile Menu Toggles -->
+            <div class="lg:hidden flex items-center">
+                <button @click="mobileMenuOpen = !mobileMenuOpen"
+                    class="text-[var(--text-main)] p-2 focus:outline-none">
+                    <svg x-show="!mobileMenuOpen" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <svg x-show="mobileMenuOpen" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        style="display: none;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
-            
+
+        </div>
+    </div>
+
+    <!-- Mobile Menu Slide-down -->
+    <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-4"
+        class="lg:hidden bg-[var(--bg)] border-b border-[var(--border)]" style="display: none;">
+        <div class="px-4 pt-2 pb-6 space-y-4">
+            <a href="#about" @click="mobileMenuOpen = false"
+                class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">Tentang</a>
+            <a href="#skills" @click="mobileMenuOpen = false"
+                class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">Skills</a>
+            <a href="#portfolio" @click="mobileMenuOpen = false"
+                class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">Portofolio</a>
+            <a href="#achievement" @click="mobileMenuOpen = false"
+                class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">Prestasi</a>
+            <a href="#organization" @click="mobileMenuOpen = false"
+                class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">Organisasi</a>
+            <a href="#certificate" @click="mobileMenuOpen = false"
+                class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">Sertifikat</a>
+            <a href="#education" @click="mobileMenuOpen = false"
+                class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">Universitas</a>
+            <a href="#contact" @click="mobileMenuOpen = false"
+                class="block text-sm font-black uppercase tracking-widest text-[var(--text-dim)] py-3 border-b border-[var(--border)]/30">Contact</a>
+
         </div>
     </div>
 </nav>
-
     <main class="overflow-x-clip">
         <!-- About Section -->
-<section id="about" class="pt-48 pb-24 relative overflow-hidden" x-data="{ shown: false }" x-intersect.once.margin.-100px="shown = true">
-    
+<section id="about" class="pt-0 sm:pt-16 pb-24 relative" x-data="{ shown: false }"
+    x-intersect.once.margin.-100px="shown = true">
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         <!-- Top Title Row -->
-        <div class="mb-16 transition-all duration-1000" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
-            <h1 class="text-6xl sm:text-8xl md:text-[10rem] font-black tracking-[-0.05em] leading-[0.8] glitch">
-                <span class="glitch-text text-outline !-webkit-text-stroke-[2px] !-webkit-text-stroke-[var(--border)]" style="-webkit-text-stroke: 2px var(--border);" data-text="CYBERSECURITY ENTHUSIAST">CYBERSECURITY ENTHUSIAST</span>
+        <div class="mb-16 transition-all duration-1000"
+            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+            <p class="text-3xl sm:text-5xl text-[var(--text-main)] font-bold mb-6 tracking-tight">
+                Hi, I'm Daffa Rahadya Atmawiguna.
+            </p>
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-[0.1em] leading-tight uppercase glitch">
+                <span class="glitch-text text-[var(--text-main)]"
+                    data-text="Aspiring Web Pentest &amp; SOC Analyst">Aspiring Web Pentest &amp; SOC Analyst</span>
             </h1>
-            <p class="text-3xl sm:text-5xl text-[var(--text-main)] font-bold mt-12 tracking-tight">
-                Hi, I'm Daffa Rahadya.
-            </p>
-            <p class="text-xl sm:text-2xl text-[var(--text-main)] font-black mt-4 tracking-[0.2em] uppercase">
-                Mahasiswa Informatika &amp; Cybersecurity Enthusiast
-            </p>
         </div>
 
-        <div class="flex flex-col md:flex-row items-start justify-between gap-16 transition-all duration-1000 delay-200" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
-            
+        <div class="flex flex-col md:flex-row items-start justify-between gap-16 transition-all duration-1000 delay-200"
+            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+
             <!-- Left: Text Box -->
             <div class="flex-1 md:pr-12">
-                <h2 class="text-4xl sm:text-5xl font-bold text-[var(--text-main)] mb-10 leading-none tracking-tighter">
-                    Menjembatani kesenjangan antara pengembangan software dan offensive security.
-                </h2>
-                
+
                 <div class="space-y-6 text-[var(--text-dim)] mb-16 text-xl leading-relaxed font-medium max-w-2xl">
-                    <p>Saya adalah mahasiswa cybersecurity yang berdedikasi dengan fokus pada Penetration Testing dan Security Operations (SOC). Perjalanan saya melibatkan pengalaman langsung dalam mengeksploitasi kerentanan dan menganalisis event keamanan.</p>
-                    <p>Selalu bersemangat untuk belajar dan beradaptasi dengan tren keamanan digital, saya aktif mengikuti kompetisi CTF dan berkontribusi di komunitas IT Security.</p>
+                    <p>Mahasiswa Informatika Telkom University dengan fokus pada Penetration Testing dan SOC. Mengasah kemampuan melalui simulasi lab, proyek akademik, dan kompetisi CTF — siap membawa rasa ingin tahu dan adaptabilitas ke lingkungan profesional.</p>
                 </div>
 
                 <div class="flex flex-wrap gap-6">
-                    <a href="#portfolio" class="px-10 py-5 bg-[var(--accent)] text-white font-bold text-xl neo-shadow neo-shadow-hover neo-border-accent uppercase tracking-widest hover:brightness-110 transition-all">
+                    <a href="#portfolio"
+                        class="px-6 py-4 sm:px-10 sm:py-5 bg-[var(--accent)] text-white font-bold text-lg sm:text-xl neo-shadow neo-shadow-hover neo-border-accent uppercase tracking-widest hover:brightness-110 transition-all">
                         Lihat Portofolio
+                    </a>
+                    <a href="/images/cv/CV_Daffa Rahadya Atmawiguna.pdf" download
+                        class="px-6 py-4 sm:px-10 sm:py-5 bg-white text-[var(--text-main)] font-bold text-lg sm:text-xl neo-shadow neo-shadow-hover border-2 border-[var(--border)] uppercase tracking-widest hover:bg-gray-50 transition-all flex items-center gap-2">
+                        Unduh CV
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                        </svg>
                     </a>
                 </div>
             </div>
-            
+
             <!-- Right: Avatar (Studio Box) -->
             <div class="w-full md:w-5/12 flex shrink-0 justify-center md:justify-end">
                 <div class="w-[85%] aspect-[4/5] bg-[var(--bg-alt)] relative p-4 neo-shadow neo-border">
-                    <div class="w-full h-full overflow-hidden grayscale contrast-110 hover:grayscale-0 transition-all duration-1000">
-                        <img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&q=80&w=600" alt="Daffa" class="object-cover w-full h-full">
+                    <div
+                        class="w-full h-full overflow-hidden grayscale contrast-110 hover:grayscale-0 transition-all duration-1000">
+                        <img src="/images/about/profile.webp" alt="Daffa Rahadya Atmawiguna"
+                            class="object-cover w-full h-full">
                     </div>
                     <!-- Decorative Tan Square -->
-                    <div class="absolute -bottom-6 -right-6 w-12 h-12 bg-[var(--accent)] neo-border hidden sm:block shadow-lg"></div>
+                    <div
+                        class="absolute -bottom-6 -right-6 w-12 h-12 bg-[var(--accent)] neo-border hidden sm:block shadow-lg">
+                    </div>
                 </div>
             </div>
 
@@ -262,509 +385,279 @@
 </section>
 
 <!-- Dedicated Skills Section -->
-<section id="skills" class="py-32 bg-[#fafafa] border-t border-gray-100 relative" x-data="{ shown: false }" x-intersect.once.margin.-100px="shown = true">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
-        
+<section id="skills" class="py-24 sm:py-32 bg-[#fafafa] border-t border-gray-100 relative" x-data="{ shown: false }"
+    x-intersect.once.margin.-100px="shown = true">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000"
+        :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+
         <div class="mb-12">
             <h2 class="text-4xl font-extrabold text-gray-900 tracking-tighter">Core Skills</h2>
         </div>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-12">
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
-                <span class="text-sm font-bold text-gray-400 uppercase block mb-4">Penetration Testing</span>
+                <span
+                    class="text-sm font-bold text-gray-400 uppercase block mb-4">Penetration Testing</span>
                 <div class="flex flex-wrap gap-4">
-                    <span class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">sqlmap</span>
-                    <span class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Burp Suite</span>
-                    <span class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Nmap</span>
+                    <span
+                        class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Sqlmap</span>
+                    <span
+                        class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Burp
+                        Suite</span>
+                    <span
+                        class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Nmap</span>
+                    <span
+                        class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Hashcat</span>
+                    <span
+                        class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Nikto</span>
+                    <span
+                        class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Ffuf</span>
+                    <span
+                        class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Dirsearch</span>
+                    <span
+                        class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Hydra</span>
                 </div>
             </div>
-            
+
             <div>
-                <span class="text-sm font-bold text-gray-400 uppercase block mb-4">Security Operations</span>
+                <span
+                    class="text-sm font-bold text-gray-400 uppercase block mb-4">Security Operations</span>
                 <div class="flex flex-wrap gap-4">
-                    <span class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Wireshark</span>
-                    <span class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Wazuh</span>
+                    <span
+                        class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Wireshark</span>
+                    <span
+                        class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Splunk</span>
+                </div>
+            </div>
+
+            <div>
+                <span
+                    class="text-sm font-bold text-gray-400 uppercase block mb-4">Sistem Operasi</span>
+                <div class="flex flex-wrap gap-4">
+                    <span
+                        class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Linux</span>
+                    <span
+                        class="px-6 py-3 bg-white text-gray-900 text-lg font-bold outline outline-1 outline-gray-200 shadow-sm hover:outline-black hover:bg-black hover:text-white transition-colors cursor-default">Windows</span>
                 </div>
             </div>
         </div>
 
     </div>
-</section>
-    <section id="portfolio" class="py-32 relative bg-transparent" x-data="{ shown: false }" x-intersect.once.margin.-100px="shown = true">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
-        
-        <div class="mb-24">
-            <h2 class="text-5xl sm:text-7xl font-black text-[var(--text-main)] tracking-tighter uppercase mb-2">Karya Saya</h2>
-            <div class="w-32 h-2 bg-[var(--accent)]"></div>
-        </div>
-
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 lg:gap-24 mt-20">
-            
-                                    <div class="relative pt-8">
-                <!-- Tape Piece -->
-                <div class="tape-piece"></div>
-
-                <a href="https://github.com/rahadyadaffa-glitch/Portofolio-Daffa-Rahadya-A" target="_blank" rel="noopener noreferrer" 
-                   class="group relative block neo-paper p-10 sm:p-14 overflow-hidden paper-texture"
-                   style="transform: rotate(-1deg);">
-
-                    <div class="relative z-10 flex flex-col h-full items-start">
-                        
-                        <div class="w-20 h-20 mb-10 text-[var(--accent)] group-hover:scale-125 group-hover:rotate-6 transition-all duration-500">
-                            <svg class="w-16 h-16 sm:w-20 sm:h-20" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M12 12v3"/><path d="m14 17-2-2-2 2"/></svg>
-                        </div>
-
-                        <h3 class="text-4xl font-black text-[var(--text-main)] tracking-tighter pb-3 group-hover:underline decoration-[var(--accent)] decoration-4 transition-all duration-500 leading-none uppercase">
-                            Pentest
-                        </h3>
-                        
-                        <p class="mt-6 text-lg text-[var(--text-dim)] group-hover:text-[var(--text-main)] transition-colors duration-500 font-medium leading-relaxed">
-                            Lihat Write-up di GitHub
-                        </p>
-
-                        <!-- GitHub CTA Pill -->
-                        <div class="mt-12 inline-flex items-center gap-3 font-black text-[var(--text-main)] border-b-4 border-[var(--accent)] pb-2 transition-all group-hover:border-[var(--text-main)] uppercase tracking-[0.2em] text-sm">
-                            Browse on GitHub
-                            <svg class="w-6 h-6 transition-transform group-hover:translate-x-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                        </div>
-                    </div>
-                </a>
-            </div>
-                                    <div class="relative pt-8">
-                <!-- Tape Piece -->
-                <div class="tape-piece"></div>
-
-                <a href="https://github.com/rahadyadaffa-glitch/Portofolio-Daffa-Rahadya-A" target="_blank" rel="noopener noreferrer" 
-                   class="group relative block neo-paper p-10 sm:p-14 overflow-hidden paper-texture"
-                   style="transform: rotate(1deg);">
-
-                    <div class="relative z-10 flex flex-col h-full items-start">
-                        
-                        <div class="w-20 h-20 mb-10 text-[var(--accent)] group-hover:scale-125 group-hover:rotate-6 transition-all duration-500">
-                            <svg class="w-16 h-16 sm:w-20 sm:h-20" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M11 9h4"/><path d="M11 12h4"/><path d="M11 15h4"/><path d="M8 9h.01"/><path d="M8 12h.01"/><path d="M8 15h.01"/></svg>
-                        </div>
-
-                        <h3 class="text-4xl font-black text-[var(--text-main)] tracking-tighter pb-3 group-hover:underline decoration-[var(--accent)] decoration-4 transition-all duration-500 leading-none uppercase">
-                            SOC
-                        </h3>
-                        
-                        <p class="mt-6 text-lg text-[var(--text-dim)] group-hover:text-[var(--text-main)] transition-colors duration-500 font-medium leading-relaxed">
-                            Lihat Analisis di GitHub
-                        </p>
-
-                        <!-- GitHub CTA Pill -->
-                        <div class="mt-12 inline-flex items-center gap-3 font-black text-[var(--text-main)] border-b-4 border-[var(--accent)] pb-2 transition-all group-hover:border-[var(--text-main)] uppercase tracking-[0.2em] text-sm">
-                            Browse on GitHub
-                            <svg class="w-6 h-6 transition-transform group-hover:translate-x-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            
-        </div>
-    </div>
-</section>
-    <section id="organization" class="py-24 bg-transparent" x-data="{ shown: false }"
+</section>    <section id="portfolio" class="py-24 sm:py-32 relative bg-transparent" x-data="{ shown: false }"
     x-intersect.once.margin.-100px="shown = true">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000"
         :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
 
         <div class="mb-24">
-            <h2 class="text-5xl sm:text-7xl font-black text-[var(--text-main)] tracking-tighter uppercase mb-2">
-                Pengalaman
+            <h2 class="text-4xl sm:text-7xl font-black text-[var(--text-main)] tracking-tighter uppercase mb-2">
+                Karya Saya
             </h2>
             <div class="w-32 h-2 bg-[var(--accent)]"></div>
         </div>
 
-        <div class="space-y-48 relative">
-            
-            <!-- Timeline Line -->
-            <div class="hidden md:block absolute left-[2.25rem] top-0 bottom-0 w-1 bg-[var(--border)]/30"></div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 lg:gap-24 mt-20">
 
-                                    <div class="relative pl-8 md:pl-24" x-data="{ spreading: false }">
-                <!-- Timeline Dot -->
-                <div class="absolute left-0 md:left-[1.95rem] top-12 w-4 h-4 bg-[var(--bg)] border-4 border-[var(--border)] rounded-full z-10 transition-all duration-700"
-                     :class="spreading ? 'border-[var(--accent)] scale-150' : ''"></div>
+                                            <div class="relative pt-8">
+                    <!-- Tape Piece -->
+                    <div class="tape-piece"></div>
 
-                <div class="flex flex-col md:flex-row justify-between items-start gap-12 lg:gap-24 relative">
-                    
-                    <!-- Left: Content Paper -->
-                    <div class="w-full md:w-[45rem] relative pt-8 transition-all duration-700"
-                         :class="spreading ? 'opacity-10 blur-md -translate-x-20 scale-95 pointer-events-none' : 'opacity-100'">
-                        <div class="tape-piece"></div>
-                        <div class="neo-paper p-10 sm:p-12 paper-texture relative z-20" style="transform: rotate(-1deg)">
-                            <div class="mb-8 pb-6 border-b-2 border-[var(--border)]/30">
-                                <h3 class="font-black text-4xl text-[var(--text-main)] mb-1 tracking-tight uppercase leading-none">Badan Mentoring</h3>
-                                <p class="text-[var(--text-dim)] font-bold text-lg italic uppercase tracking-wider">Secretary of Logistics Division</p>
-                            </div>
-                            
-                            <p class="text-[10px] text-[var(--text-dim)] font-black uppercase tracking-[0.4em] opacity-40 mb-6">Jan 2026 — Feb 2026 • Sekolah Mentoring</p>
+                    <a href="https://github.com/rahadyadaffa-glitch/Portofolio-Pentest-Daffa-Rahadya-A" target="_blank" rel="noopener noreferrer"
+                        class="group relative block neo-paper p-10 sm:p-14 overflow-hidden paper-texture"
+                        style="transform: rotate(-1deg);">
 
-                            <ul class="space-y-4 text-lg leading-relaxed list-none">
-                                                                <li class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
-                                    Sourced and identified reliable vendors to provide high-quality materials and equipment required for the Sekolah Mentoring program.
-                                </li>
-                                                            </ul>
-                        </div>
-                    </div>
+                        <div class="relative z-10 flex flex-col h-full items-start">
 
-                    <!-- Right: Photo Fan (Ultra-Wide Spread) -->
-                    <div class="hidden md:block shrink-0 w-[32rem] h-[24rem] z-30 mt-16 group cursor-pointer" 
-                         @mouseenter="spreading = true" @mouseleave="spreading = false">
-                        <div class="relative w-full h-full">
-                            <!-- Overlay Label -->
-                            <div class="absolute -top-16 left-0 right-0 text-center transition-all duration-500"
-                                 :class="spreading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'">
-                                <span class="text-[10px] font-black uppercase tracking-[0.6em] text-[var(--accent)]">Ultra-Perspective Active</span>
+                            <div
+                                class="w-20 h-20 mb-10 text-[var(--accent)] group-hover:scale-125 group-hover:rotate-6 transition-all duration-500">
+                                <svg class="w-16 h-16 sm:w-20 sm:h-20" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M12 12v3"/><path d="m14 17-2-2-2 2"/></svg>
                             </div>
 
-                            <!-- Front Image -->
-                            <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-30"
-                                 :class="spreading ? 'scale-110 !shadow-2xl rotate-0 -translate-y-8' : 'rotate-3'">
-                                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full h-full object-cover transition-all duration-700"
-                                     :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
-                            </div>
+                            <h3
+                                class="text-4xl font-black text-[var(--text-main)] tracking-tighter pb-3 group-hover:underline decoration-[var(--accent)] decoration-4 transition-all duration-500 leading-none uppercase">
+                                Pentest
+                            </h3>
 
-                            <!-- Left Image (Slides out completely) -->
-                            <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-20"
-                                 :class="spreading ? '-translate-x-[110%] -rotate-6 scale-95 opacity-100' : '-rotate-6 translate-x-2 translate-y-2 opacity-40'">
-                                <img src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaad5b?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full h-full object-cover transition-all duration-700"
-                                     :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
-                            </div>
+                            <p
+                                class="mt-6 text-lg text-[var(--text-dim)] group-hover:text-[var(--text-main)] transition-colors duration-500 font-medium leading-relaxed">
+                                View Write-ups on GitHub
+                            </p>
 
-                            <!-- Right Image (Slides out completely) -->
-                            <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-10"
-                                 :class="spreading ? 'translate-x-[110%] rotate-6 scale-95 opacity-100' : 'rotate-12 -translate-x-2 -translate-y-2 opacity-40'">
-                                <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full h-full object-cover transition-all duration-700"
-                                     :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
+                            <!-- GitHub CTA Pill -->
+                            <div
+                                class="mt-12 inline-flex items-center gap-3 font-black text-[var(--text-main)] border-b-4 border-[var(--accent)] pb-2 transition-all group-hover:border-[var(--text-main)] uppercase tracking-[0.2em] text-sm">
+                                Browse on GitHub
+                                <svg class="w-6 h-6 transition-transform group-hover:translate-x-3" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Mobile Images Section -->
-                    <div class="md:hidden grid grid-cols-1 gap-6 mt-4 w-full">
-                                                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full aspect-video object-cover neo-border-sm">
-                                                <img src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaad5b?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full aspect-video object-cover neo-border-sm">
-                                                <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full aspect-video object-cover neo-border-sm">
-                                            </div>
+                    </a>
                 </div>
-            </div>
-                                    <div class="relative pl-8 md:pl-24" x-data="{ spreading: false }">
-                <!-- Timeline Dot -->
-                <div class="absolute left-0 md:left-[1.95rem] top-12 w-4 h-4 bg-[var(--bg)] border-4 border-[var(--border)] rounded-full z-10 transition-all duration-700"
-                     :class="spreading ? 'border-[var(--accent)] scale-150' : ''"></div>
+                                            <div class="relative pt-8">
+                    <!-- Tape Piece -->
+                    <div class="tape-piece"></div>
 
-                <div class="flex flex-col md:flex-row justify-between items-start gap-12 lg:gap-24 relative">
-                    
-                    <!-- Left: Content Paper -->
-                    <div class="w-full md:w-[45rem] relative pt-8 transition-all duration-700"
-                         :class="spreading ? 'opacity-10 blur-md -translate-x-20 scale-95 pointer-events-none' : 'opacity-100'">
-                        <div class="tape-piece"></div>
-                        <div class="neo-paper p-10 sm:p-12 paper-texture relative z-20" style="transform: rotate(1deg)">
-                            <div class="mb-8 pb-6 border-b-2 border-[var(--border)]/30">
-                                <h3 class="font-black text-4xl text-[var(--text-main)] mb-1 tracking-tight uppercase leading-none">Badan Mentoring</h3>
-                                <p class="text-[var(--text-dim)] font-bold text-lg italic uppercase tracking-wider">Head of Mobilization Division</p>
-                            </div>
-                            
-                            <p class="text-[10px] text-[var(--text-dim)] font-black uppercase tracking-[0.4em] opacity-40 mb-6">Dec 2025 • Closing ICB</p>
+                    <a href="https://github.com/rahadyadaffa-glitch/Portofolio-SOC-Daffa-Rahadya-A" target="_blank" rel="noopener noreferrer"
+                        class="group relative block neo-paper p-10 sm:p-14 overflow-hidden paper-texture"
+                        style="transform: rotate(1deg);">
 
-                            <ul class="space-y-4 text-lg leading-relaxed list-none">
-                                                                <li class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
-                                    Led and managed a division of 40 committee members, overseeing the strategic mobilization of over 1,000 participants to ensure a smooth and orderly Closing ICB event.
-                                </li>
-                                                                <li class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
-                                    Strategically plotted and assigned personnel to key operational zones, optimizing crowd control and ensuring all staff were effectively positioned to manage participant flow.
-                                </li>
-                                                                <li class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
-                                    Orchestrated the seamless movement of participants, proactively identifying and resolving operational bottlenecks to maintain the event’s schedule and safety protocols.
-                                </li>
-                                                            </ul>
-                        </div>
-                    </div>
+                        <div class="relative z-10 flex flex-col h-full items-start">
 
-                    <!-- Right: Photo Fan (Ultra-Wide Spread) -->
-                    <div class="hidden md:block shrink-0 w-[32rem] h-[24rem] z-30 mt-16 group cursor-pointer" 
-                         @mouseenter="spreading = true" @mouseleave="spreading = false">
-                        <div class="relative w-full h-full">
-                            <!-- Overlay Label -->
-                            <div class="absolute -top-16 left-0 right-0 text-center transition-all duration-500"
-                                 :class="spreading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'">
-                                <span class="text-[10px] font-black uppercase tracking-[0.6em] text-[var(--accent)]">Ultra-Perspective Active</span>
+                            <div
+                                class="w-20 h-20 mb-10 text-[var(--accent)] group-hover:scale-125 group-hover:rotate-6 transition-all duration-500">
+                                <svg class="w-16 h-16 sm:w-20 sm:h-20" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M11 9h4"/><path d="M11 12h4"/><path d="M11 15h4"/><path d="M8 9h.01"/><path d="M8 12h.01"/><path d="M8 15h.01"/></svg>
                             </div>
 
-                            <!-- Front Image -->
-                            <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-30"
-                                 :class="spreading ? 'scale-110 !shadow-2xl rotate-0 -translate-y-8' : 'rotate-3'">
-                                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full h-full object-cover transition-all duration-700"
-                                     :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
-                            </div>
+                            <h3
+                                class="text-4xl font-black text-[var(--text-main)] tracking-tighter pb-3 group-hover:underline decoration-[var(--accent)] decoration-4 transition-all duration-500 leading-none uppercase">
+                                SOC
+                            </h3>
 
-                            <!-- Left Image (Slides out completely) -->
-                            <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-20"
-                                 :class="spreading ? '-translate-x-[110%] -rotate-6 scale-95 opacity-100' : '-rotate-6 translate-x-2 translate-y-2 opacity-40'">
-                                <img src="https://images.unsplash.com/photo-1540317580114-ed684c0c5ad1?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full h-full object-cover transition-all duration-700"
-                                     :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
-                            </div>
+                            <p
+                                class="mt-6 text-lg text-[var(--text-dim)] group-hover:text-[var(--text-main)] transition-colors duration-500 font-medium leading-relaxed">
+                                View Write-ups on GitHub
+                            </p>
 
-                            <!-- Right Image (Slides out completely) -->
-                            <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-10"
-                                 :class="spreading ? 'translate-x-[110%] rotate-6 scale-95 opacity-100' : 'rotate-12 -translate-x-2 -translate-y-2 opacity-40'">
-                                <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full h-full object-cover transition-all duration-700"
-                                     :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
+                            <!-- GitHub CTA Pill -->
+                            <div
+                                class="mt-12 inline-flex items-center gap-3 font-black text-[var(--text-main)] border-b-4 border-[var(--accent)] pb-2 transition-all group-hover:border-[var(--text-main)] uppercase tracking-[0.2em] text-sm">
+                                Browse on GitHub
+                                <svg class="w-6 h-6 transition-transform group-hover:translate-x-3" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Mobile Images Section -->
-                    <div class="md:hidden grid grid-cols-1 gap-6 mt-4 w-full">
-                                                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full aspect-video object-cover neo-border-sm">
-                                                <img src="https://images.unsplash.com/photo-1540317580114-ed684c0c5ad1?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full aspect-video object-cover neo-border-sm">
-                                                <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full aspect-video object-cover neo-border-sm">
-                                            </div>
+                    </a>
                 </div>
-            </div>
-                                    <div class="relative pl-8 md:pl-24" x-data="{ spreading: false }">
-                <!-- Timeline Dot -->
-                <div class="absolute left-0 md:left-[1.95rem] top-12 w-4 h-4 bg-[var(--bg)] border-4 border-[var(--border)] rounded-full z-10 transition-all duration-700"
-                     :class="spreading ? 'border-[var(--accent)] scale-150' : ''"></div>
-
-                <div class="flex flex-col md:flex-row justify-between items-start gap-12 lg:gap-24 relative">
-                    
-                    <!-- Left: Content Paper -->
-                    <div class="w-full md:w-[45rem] relative pt-8 transition-all duration-700"
-                         :class="spreading ? 'opacity-10 blur-md -translate-x-20 scale-95 pointer-events-none' : 'opacity-100'">
-                        <div class="tape-piece"></div>
-                        <div class="neo-paper p-10 sm:p-12 paper-texture relative z-20" style="transform: rotate(-0.5deg)">
-                            <div class="mb-8 pb-6 border-b-2 border-[var(--border)]/30">
-                                <h3 class="font-black text-4xl text-[var(--text-main)] mb-1 tracking-tight uppercase leading-none">Badan Mentoring</h3>
-                                <p class="text-[var(--text-dim)] font-bold text-lg italic uppercase tracking-wider">Logistics Associate</p>
-                            </div>
-                            
-                            <p class="text-[10px] text-[var(--text-dim)] font-black uppercase tracking-[0.4em] opacity-40 mb-6">Nov 2025 • Mentoring General ICB</p>
-
-                            <ul class="space-y-4 text-lg leading-relaxed list-none">
-                                                                <li class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
-                                    Executed procurement requests from various divisions, ensuring all necessary supplies and equipment were sourced and available on schedule to support event operations.
-                                </li>
-                                                                <li class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
-                                    Maintained accountability for borrowed assets, tracking their usage throughout the event and ensuring all items were returned in proper condition.
-                                </li>
-                                                                <li class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
-                                    Provided on-site operational support by assisting in the physical setup of event infrastructure, ensuring all logistical needs were met according to the team&#039;s requirements.
-                                </li>
-                                                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Right: Photo Fan (Ultra-Wide Spread) -->
-                    <div class="hidden md:block shrink-0 w-[32rem] h-[24rem] z-30 mt-16 group cursor-pointer" 
-                         @mouseenter="spreading = true" @mouseleave="spreading = false">
-                        <div class="relative w-full h-full">
-                            <!-- Overlay Label -->
-                            <div class="absolute -top-16 left-0 right-0 text-center transition-all duration-500"
-                                 :class="spreading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'">
-                                <span class="text-[10px] font-black uppercase tracking-[0.6em] text-[var(--accent)]">Ultra-Perspective Active</span>
-                            </div>
-
-                            <!-- Front Image -->
-                            <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-30"
-                                 :class="spreading ? 'scale-110 !shadow-2xl rotate-0 -translate-y-8' : 'rotate-3'">
-                                <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full h-full object-cover transition-all duration-700"
-                                     :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
-                            </div>
-
-                            <!-- Left Image (Slides out completely) -->
-                            <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-20"
-                                 :class="spreading ? '-translate-x-[110%] -rotate-6 scale-95 opacity-100' : '-rotate-6 translate-x-2 translate-y-2 opacity-40'">
-                                <img src="https://images.unsplash.com/photo-1449247709967-0403120159f8?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full h-full object-cover transition-all duration-700"
-                                     :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
-                            </div>
-
-                            <!-- Right Image (Slides out completely) -->
-                            <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-10"
-                                 :class="spreading ? 'translate-x-[110%] rotate-6 scale-95 opacity-100' : 'rotate-12 -translate-x-2 -translate-y-2 opacity-40'">
-                                <img src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full h-full object-cover transition-all duration-700"
-                                     :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Mobile Images Section -->
-                    <div class="md:hidden grid grid-cols-1 gap-6 mt-4 w-full">
-                                                <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full aspect-video object-cover neo-border-sm">
-                                                <img src="https://images.unsplash.com/photo-1449247709967-0403120159f8?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full aspect-video object-cover neo-border-sm">
-                                                <img src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full aspect-video object-cover neo-border-sm">
-                                            </div>
-                </div>
-            </div>
-                                    <div class="relative pl-8 md:pl-24" x-data="{ spreading: false }">
-                <!-- Timeline Dot -->
-                <div class="absolute left-0 md:left-[1.95rem] top-12 w-4 h-4 bg-[var(--bg)] border-4 border-[var(--border)] rounded-full z-10 transition-all duration-700"
-                     :class="spreading ? 'border-[var(--accent)] scale-150' : ''"></div>
-
-                <div class="flex flex-col md:flex-row justify-between items-start gap-12 lg:gap-24 relative">
-                    
-                    <!-- Left: Content Paper -->
-                    <div class="w-full md:w-[45rem] relative pt-8 transition-all duration-700"
-                         :class="spreading ? 'opacity-10 blur-md -translate-x-20 scale-95 pointer-events-none' : 'opacity-100'">
-                        <div class="tape-piece"></div>
-                        <div class="neo-paper p-10 sm:p-12 paper-texture relative z-20" style="transform: rotate(0.5deg)">
-                            <div class="mb-8 pb-6 border-b-2 border-[var(--border)]/30">
-                                <h3 class="font-black text-4xl text-[var(--text-main)] mb-1 tracking-tight uppercase leading-none">Badan Mentoring</h3>
-                                <p class="text-[var(--text-dim)] font-bold text-lg italic uppercase tracking-wider">Field Coordinator</p>
-                            </div>
-                            
-                            <p class="text-[10px] text-[var(--text-dim)] font-black uppercase tracking-[0.4em] opacity-40 mb-6">Oct 2025 • Opening ICB</p>
-
-                            <ul class="space-y-4 text-lg leading-relaxed list-none">
-                                                                <li class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
-                                    Directed on-site operations and led a team of 100 committee members to execute the Opening ICB event for over 1,000 participants, ensuring every segment of the program ran precisely according to the scheduled timeline.
-                                </li>
-                                                                <li class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
-                                    Served as the primary point of contact for real-time troubleshooting, swiftly resolving operational challenges to ensure the event&#039;s continuity and success.
-                                </li>
-                                                                <li class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
-                                    Facilitated seamless communication between multiple divisions to synchronize activities, maintaining high-quality execution for a large-scale audience.
-                                </li>
-                                                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Right: Photo Fan (Ultra-Wide Spread) -->
-                    <div class="hidden md:block shrink-0 w-[32rem] h-[24rem] z-30 mt-16 group cursor-pointer" 
-                         @mouseenter="spreading = true" @mouseleave="spreading = false">
-                        <div class="relative w-full h-full">
-                            <!-- Overlay Label -->
-                            <div class="absolute -top-16 left-0 right-0 text-center transition-all duration-500"
-                                 :class="spreading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'">
-                                <span class="text-[10px] font-black uppercase tracking-[0.6em] text-[var(--accent)]">Ultra-Perspective Active</span>
-                            </div>
-
-                            <!-- Front Image -->
-                            <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-30"
-                                 :class="spreading ? 'scale-110 !shadow-2xl rotate-0 -translate-y-8' : 'rotate-3'">
-                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full h-full object-cover transition-all duration-700"
-                                     :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
-                            </div>
-
-                            <!-- Left Image (Slides out completely) -->
-                            <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-20"
-                                 :class="spreading ? '-translate-x-[110%] -rotate-6 scale-95 opacity-100' : '-rotate-6 translate-x-2 translate-y-2 opacity-40'">
-                                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full h-full object-cover transition-all duration-700"
-                                     :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
-                            </div>
-
-                            <!-- Right Image (Slides out completely) -->
-                            <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-10"
-                                 :class="spreading ? 'translate-x-[110%] rotate-6 scale-95 opacity-100' : 'rotate-12 -translate-x-2 -translate-y-2 opacity-40'">
-                                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full h-full object-cover transition-all duration-700"
-                                     :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Mobile Images Section -->
-                    <div class="md:hidden grid grid-cols-1 gap-6 mt-4 w-full">
-                                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full aspect-video object-cover neo-border-sm">
-                                                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full aspect-video object-cover neo-border-sm">
-                                                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full aspect-video object-cover neo-border-sm">
-                                            </div>
-                </div>
-            </div>
             
         </div>
     </div>
-</section>
-    <section id="certificate" class="py-32 relative bg-transparent" x-data="{ shown: false }" x-intersect.once.margin.-100px="shown = true">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
-        
+</section>    <section id="achievement" class="py-24 sm:py-32 relative bg-transparent" x-data="{ shown: false, expandedImage: null }"
+    x-intersect.once.margin.-100px="shown = true">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000"
+        :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+
         <div class="mb-24">
-            <h2 class="text-5xl sm:text-7xl font-black text-[var(--text-main)] tracking-tighter uppercase mb-2">Sertifikasi &amp; Pencapaian</h2>
+            <h2 class="text-4xl sm:text-7xl font-black text-[var(--text-main)] tracking-tighter uppercase mb-2">
+                Prestasi
+            </h2>
             <div class="w-32 h-2 bg-[var(--accent)]"></div>
         </div>
 
         
-        <!-- Square Grid -->
-        <div class="flex flex-col sm:flex-row gap-12 max-w-5xl mx-auto">
-                        <div class="group flex-1 aspect-square bg-[var(--bg-alt)] flex flex-col items-center justify-center p-8 neo-border neo-shadow cursor-pointer hover:border-[var(--accent)] transition-all font-display"
-                 @click="expandedCert = {&quot;id&quot;:1,&quot;title&quot;:&quot;SOC Certificate&quot;,&quot;desc&quot;:&quot;Achieved top ranking in the live Security Operations environment challenge. Analyzed pcap files and SIEM logs accurately within the tight time limit.&quot;,&quot;has_leaderboard&quot;:true,&quot;img_cert&quot;:&quot;https:\/\/images.unsplash.com\/photo-1589330694653-efa6483321d7?auto=format&amp;fit=crop&amp;q=80&amp;w=800&quot;,&quot;img_leaderboard&quot;:&quot;https:\/\/images.unsplash.com\/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;q=80&amp;w=800&quot;}">
-                
-                <h3 class="text-3xl font-black text-[var(--text-main)] text-center leading-none tracking-tighter group-hover:text-[var(--accent)] transition-colors">SOC Certificate</h3>
-                
-                <p class="mt-8 text-xs font-black text-[var(--text-dim)] group-hover:text-[var(--text-main)] transition-colors tracking-[0.3em] uppercase flex items-center gap-3">
-                    View Certificate 
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </p>
-                
-            </div>
-                        <div class="group flex-1 aspect-square bg-[var(--bg-alt)] flex flex-col items-center justify-center p-8 neo-border neo-shadow cursor-pointer hover:border-[var(--accent)] transition-all font-display"
-                 @click="expandedCert = {&quot;id&quot;:2,&quot;title&quot;:&quot;Pentest Certificate (Ethical Hacking)&quot;,&quot;desc&quot;:&quot;Successfully exploited advanced machines covering SQLi, XSS, and Privilege Escalation to secure a top spot on the scoreboard.&quot;,&quot;has_leaderboard&quot;:true,&quot;img_cert&quot;:&quot;https:\/\/images.unsplash.com\/photo-1554224155-8d04cb21cd6c?auto=format&amp;fit=crop&amp;q=80&amp;w=800&quot;,&quot;img_leaderboard&quot;:&quot;https:\/\/images.unsplash.com\/photo-1460925895917-afdab827c52f?auto=format&amp;fit=crop&amp;q=80&amp;w=800&quot;}">
-                
-                <h3 class="text-3xl font-black text-[var(--text-main)] text-center leading-none tracking-tighter group-hover:text-[var(--accent)] transition-colors">Pentest Certificate (Ethical Hacking)</h3>
-                
-                <p class="mt-8 text-xs font-black text-[var(--text-dim)] group-hover:text-[var(--text-main)] transition-colors tracking-[0.3em] uppercase flex items-center gap-3">
-                    View Certificate 
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </p>
-                
-            </div>
+        <!-- Square Grid (Text-only cards, matches certifications layout and size) -->
+        <div class="flex flex-col sm:flex-row gap-8 max-w-md mx-auto mt-20">
+                            <div class="group flex-1 min-h-[280px] bg-[var(--bg-alt)] flex flex-col justify-between p-10 neo-border neo-shadow cursor-pointer hover:border-[var(--accent)] transition-all font-display"
+                    @click="expandedAchievement = {&quot;id&quot;:1,&quot;title&quot;:&quot;Helium Challenge Batch 3 - Pentest Competition&quot;,&quot;platform&quot;:&quot;Cyber Academy Indonesia&quot;,&quot;desc&quot;:&quot;Conducted end-to-end web application penetration testing during the Helium Challenge competition, including vulnerability discovery, exploit development, and privilege escalation, then documented the findings in a professional security assessment report. Ranked 9th out of all finalists with a score of 92.60.&quot;,&quot;img_cert&quot;:&quot;\/images\/achievements\/Sertifikat-Helium Challenge.png&quot;,&quot;img_leaderboard&quot;:&quot;\/images\/achievements\/Leaderboard-Helium-Challenge.png&quot;}">
+
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="mb-6 px-5 py-2 bg-[var(--bg-alt)] border-2 border-[var(--border)] text-xs font-black uppercase tracking-widest text-[var(--text-main)] shadow-sm">
+                            Cyber Academy Indonesia
+                        </div>
+                        <h3
+                            class="text-xl sm:text-2xl font-black text-[var(--text-main)] text-center leading-snug tracking-tighter group-hover:text-[var(--accent)] transition-colors">
+                            Helium Challenge Batch 3 - Pentest Competition
+                        </h3>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                        <p
+                            class="text-xs font-black text-[var(--text-dim)] group-hover:text-[var(--text-main)] transition-colors tracking-[0.3em] uppercase flex items-center gap-3">
+                            View Achievement
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </p>
+                    </div>
+
+                </div>
                     </div>
 
         <!-- Alpine.js Modal Lightbox -->
         <template x-teleport="body">
-            <div x-show="expandedCert" style="display: none;" class="fixed inset-0 z-[100] overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div x-show="expandedAchievement" style="display: none;" class="fixed inset-0 z-[100] overflow-y-auto"
+                aria-labelledby="modal-title" role="dialog" aria-modal="true"
+                x-effect="expandedAchievement ? document.body.classList.add('overflow-hidden') : document.body.classList.remove('overflow-hidden')">
                 <!-- Backdrop -->
-                <div x-show="expandedCert" 
-                     x-transition.opacity 
-                     class="fixed inset-0 bg-white/95 backdrop-blur-sm" 
-                     @click="expandedCert = null"></div>
+                <div x-show="expandedAchievement" x-transition.opacity
+                    class="fixed inset-0 bg-white/95 backdrop-blur-sm" @click="expandedAchievement = null"></div>
 
-                <div class="flex min-h-full items-center justify-center p-4 sm:p-8 relative">
-                    
+                <div class="flex min-h-full items-center justify-center p-4 sm:p-6 lg:p-8 relative z-10">
+
                     <!-- Close button -->
-                    <button @click="expandedCert = null" class="fixed top-8 right-8 z-[110] p-3 rounded-full bg-gray-100 hover:bg-gray-200 text-black transition-colors">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                    <button @click="expandedAchievement = null"
+                        class="fixed top-4 right-4 z-[110] sm:top-8 sm:right-8 p-3 rounded-full bg-gray-100 hover:bg-gray-200 text-black transition-colors">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
                     </button>
 
                     <!-- Modal Panel -->
-                    <div x-show="expandedCert" 
-                         x-transition:enter="ease-out duration-500" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
-                         x-transition:leave="ease-in duration-300" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
-                         class="relative w-full max-w-7xl z-10 flex flex-col lg:flex-row gap-0 bg-[var(--bg)] neo-shadow neo-border overflow-hidden">
-                        
-                        <!-- LEFT PANEL (60%): Main Certificate -->
-                        <div class="w-full lg:w-3/5 bg-white p-6 sm:p-12 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-[var(--border)]">
-                            <div class="w-full h-full flex items-center justify-center min-h-[400px]">
-                                <img :src="expandedCert?.img_cert" :alt="expandedCert?.title" class="w-full object-contain max-h-[80vh] shadow-2xl">
+                    <div x-show="expandedAchievement" x-transition:enter="ease-out duration-500"
+                        x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="ease-in duration-300" x-transition:leave-start="opacity-100 scale-100"
+                        x-transition:leave-end="opacity-0 scale-95"
+                        class="relative w-full max-w-7xl z-10 flex flex-col lg:flex-row gap-0 bg-[var(--bg)] neo-shadow neo-border overflow-hidden">
+
+                        <!-- LEFT PANEL (50%): Main Leaderboard Screenshot -->
+                        <div class="w-full lg:w-1/2 bg-white p-6 sm:p-12 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-[var(--border)] cursor-zoom-in group/img"
+                            @click="expandedImage = expandedAchievement?.img_leaderboard">
+                            <div
+                                class="w-full h-full flex flex-col items-center justify-center min-h-[250px] lg:min-h-[400px]">
+                                <img :src="expandedAchievement?.img_leaderboard" :alt="expandedAchievement?.title"
+                                    class="w-full object-contain max-h-[80vh] shadow-2xl transition-transform duration-500 group-hover/img:scale-[1.02]">
+                                <span
+                                    class="mt-4 text-[10px] font-black uppercase tracking-widest text-zinc-400 group-hover/img:text-[var(--accent)] transition-colors">Click
+                                    to Expand Leaderboard</span>
                             </div>
                         </div>
 
-                        <!-- RIGHT PANEL (40%): Leaderboard + Description -->
-                        <div class="w-full lg:w-2/5 flex flex-col bg-[var(--bg-alt)]">
-                            
-                            <!-- Top: Leaderboard Image (Smaller) -->
-                            <div x-show="expandedCert?.has_leaderboard" class="w-full p-8 border-b border-[var(--border)] bg-white/50">
-                                <p class="text-[0.65rem] font-black uppercase tracking-[0.4em] text-[var(--accent)] mb-4 italic">Achievement Verification</p>
-                                <div class="w-full aspect-video bg-zinc-100 flex items-center justify-center overflow-hidden neo-border">
-                                    <img :src="expandedCert?.img_leaderboard" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Leaderboard details">
+                        <!-- RIGHT PANEL (50%): Certificate + Details -->
+                        <div class="w-full lg:w-1/2 flex flex-col bg-[var(--bg-alt)]">
+
+                            <!-- Top: Certificate Image (Compact preview) -->
+                            <div x-show="expandedAchievement?.img_cert"
+                                class="w-full p-6 border-b border-[var(--border)] bg-white/50 cursor-zoom-in group/img"
+                                @click="expandedImage = expandedAchievement?.img_cert">
+                                <div
+                                    class="w-full min-h-[180px] flex items-center justify-center overflow-hidden neo-border bg-white shadow-inner">
+                                    <img :src="expandedAchievement?.img_cert"
+                                        class="w-full h-auto max-h-[30vh] object-contain transition-transform duration-500 group-hover/img:scale-[1.05]"
+                                        alt="Certificate details">
                                 </div>
+                                <p
+                                    class="mt-2 text-center text-[9px] font-black uppercase tracking-widest text-zinc-400 group-hover/img:text-[var(--accent)] transition-colors">
+                                    Click to Expand Certificate</p>
                             </div>
 
                             <!-- Bottom: Text Details -->
-                            <div class="flex-1 p-8 sm:p-12 flex flex-col justify-center">
-                                <div class="w-12 h-1 bg-[var(--accent)] mb-8"></div>
-                                <h3 class="text-4xl sm:text-5xl font-black text-[var(--text-main)] mb-6 tracking-tighter uppercase leading-none" x-text="expandedCert?.title"></h3>
-                                <p class="text-[var(--text-dim)] text-xl leading-relaxed italic" x-text="expandedCert?.desc"></p>
-                                
-                                <div class="mt-12 pt-8 border-t border-[var(--border)]/50">
-                                    <button @click="expandedCert = null" class="text-sm font-black uppercase tracking-widest text-[var(--text-main)] hover:text-[var(--accent)] transition-colors flex items-center gap-3">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                            <div class="flex-1 p-6 sm:p-10 flex flex-col justify-center">
+                                <div class="w-10 h-1 bg-[var(--accent)] mb-6"></div>
+                                <h3 class="text-xl sm:text-3xl font-black text-[var(--text-main)] mb-4 tracking-tighter uppercase leading-snug"
+                                    x-text="expandedAchievement?.title"></h3>
+                                <p class="text-[var(--text-dim)] text-base leading-relaxed italic"
+                                    x-text="expandedAchievement?.desc"></p>
+
+                                <div class="mt-8 pt-6 border-t border-[var(--border)]/50">
+                                    <button @click="expandedAchievement = null"
+                                        class="text-sm font-black uppercase tracking-widest text-[var(--text-main)] hover:text-[var(--accent)] transition-colors flex items-center gap-3">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                                d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                                        </svg>
                                         Back to Gallery
                                     </button>
                                 </div>
                             </div>
-                            
+
                         </div>
 
                     </div>
@@ -772,63 +665,647 @@
             </div>
         </template>
 
+        <!-- Full-Screen Image Lightbox (Second Level) -->
+        <template x-teleport="body">
+            <div x-show="expandedImage" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
+                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" style="display: none;"
+                class="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/95 backdrop-blur-md">
+
+                <button @click="expandedImage = null"
+                    class="absolute top-8 right-8 p-4 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
+                <div class="w-full h-full flex items-center justify-center p-8" @click="expandedImage = null">
+                    <img :src="expandedImage" class="max-w-full max-h-full object-contain shadow-2xl" @click.stop>
+                </div>
+            </div>
+        </template>
+
     </div>
-</section>
-    <section id="education" class="py-32 relative bg-transparent" x-data="{ shown: false }" x-intersect.once.margin.-100px="shown = true">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
-        
-        <div class="mb-24">
-            <h2 class="text-5xl sm:text-7xl font-black text-[var(--text-main)] tracking-tighter uppercase mb-2">Pendidikan Tinggi</h2>
+</section>    <section id="organization" class="py-20 sm:py-24 bg-transparent" x-data="{ shown: false }"
+    x-intersect.once.margin.-100px="shown = true">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="mb-24 transition-all duration-1000"
+            :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+            <h2 class="text-3xl sm:text-7xl font-black text-[var(--text-main)] tracking-tighter uppercase mb-2">
+                Pengalaman
+            </h2>
             <div class="w-32 h-2 bg-[var(--accent)]"></div>
         </div>
 
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between border-y border-[var(--border)] py-12 gap-8 group hover:bg-[var(--bg-alt)] transition-all px-8 -mx-8 cursor-default neo-shadow outline-none border-t-0">
+        <div class="space-y-48 relative">
             
-            <div class="flex items-center gap-8">
-                <!-- University Logo Placeholder -->
-                <div class="w-20 h-20 shrink-0 bg-[var(--bg-alt)] border-2 border-[var(--border)] flex items-center justify-center rounded-none group-hover:scale-110 group-hover:bg-[var(--accent)] transition-all duration-500">
-                    <svg class="w-10 h-10 text-[var(--text-main)] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14v7" />
+            <!-- Whiteboard Title -->
+            <div class="mb-20 pl-0 md:pl-24 transition-all duration-1000 delay-300"
+                :class="shown ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'">
+                <div class="flex items-center gap-6 relative">
+                    <img src="/images/organization/logo-badan-mentoring.webp" alt="Logo Badan Mentoring"
+                        class="w-24 h-24 sm:w-32 sm:h-32 object-contain">
+                    <div class="flex-1 relative min-w-0">
+                        <h3
+                            class="text-xl sm:text-6xl font-black text-[var(--text-main)] tracking-tight uppercase leading-none">
+                            Badan Mentoring</h3>
+                        <div
+                            class="absolute -bottom-4 left-0 w-full h-1.5 bg-[var(--accent)] transform -rotate-1 opacity-60">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Line -->
+            <div class="hidden md:block absolute left-[2.25rem] top-32 bottom-0 w-1 bg-[var(--border)]/30"></div>
+
+                                            <div class="relative pl-8 md:pl-24" x-data="{ spreading: false, itemShown: false }"
+                    x-intersect.once.margin.-100px="itemShown = true">
+                    <!-- Timeline Dot -->
+                    <div class="absolute left-0 md:left-[1.95rem] top-12 w-4 h-4 bg-[var(--bg)] border-4 border-[var(--border)] rounded-full z-10 transition-all duration-700"
+                        :class="itemShown ? (spreading ? 'border-[var(--accent)] scale-150 opacity-100' : 'opacity-100') : 'opacity-0 scale-50'">
+                    </div>
+
+                    <div class="flex flex-col md:flex-row justify-between items-start gap-12 lg:gap-24 relative">
+
+                        <!-- Left: Content Paper -->
+                        <div class="w-full md:w-[45rem] relative pt-8 transition-all duration-1000 ease-out"
+                            :class="spreading ? 'opacity-10 blur-md -translate-x-20 scale-95 pointer-events-none' : (itemShown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20')">
+                            <div class="tape-piece"></div>
+                            <div class="neo-paper p-6 sm:p-12 paper-texture relative z-20"
+                                style="transform: rotate(-1deg)">
+                                <div class="mb-8 pb-6 border-b-2 border-[var(--border)]/30">
+                                    <h4
+                                        class="font-black text-3xl sm:text-4xl text-[var(--text-main)] mb-1 tracking-tight uppercase leading-[1.1]">
+                                        Secretary of Logistics Division
+                                    </h4>
+                                </div>
+
+                                <p
+                                    class="text-xs sm:text-sm text-[var(--text-main)] font-black uppercase tracking-[0.3em] mb-8">
+                                    Jan 2026 — Feb 2026 • Sekolah Mentoring
+                                </p>
+
+                                <ul class="space-y-4 text-lg leading-relaxed list-none">
+                                                                            <li
+                                            class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
+                                            Sourced and identified reliable vendors to provide high-quality materials and equipment required for the Sekolah Mentoring program.
+                                        </li>
+                                                                            <li
+                                            class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
+                                            Executed purchasing activities for all logistical needs, ensuring that all items were acquired on time and met the organization&#039;s standards.
+                                        </li>
+                                                                            <li
+                                            class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
+                                            Managed purchase documentation, including receipts and invoices, to ensure accurate reporting and seamless coordination with the Finance department.
+                                        </li>
+                                                                    </ul>
+                            </div>
+                        </div>
+
+                        <!-- Right: Photo Fan (Dynamic) -->
+                        <div class="hidden md:block shrink-0 w-[32rem] h-[24rem] z-30 mt-16 group cursor-pointer transition-all duration-1000 ease-out delay-200"
+                            :class="itemShown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'"
+                            @mouseenter="spreading = true" @mouseleave="spreading = false">
+                            <div class="relative w-full h-full">
+                                <!-- Overlay Label -->
+                                <div class="absolute -top-16 left-0 right-0 text-center transition-all duration-500"
+                                    :class="spreading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'">
+                                    <span
+                                        class="text-[10px] font-black uppercase tracking-[0.6em] text-[var(--accent)]">Perspective
+                                        Explorer Active</span>
+                                </div>
+
+                                                                                                        <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-30"
+                                        :class="spreading ? 'scale-110 !shadow-2xl rotate-0 -translate-y-8' : 'rotate-3'">
+                                        <img src="/images/organization/SM-1.webp" class="w-full h-full object-cover transition-all duration-700"
+                                            :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
+                                    </div>
+                                                                                                        <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-20"
+                                        :class="spreading ? '-translate-x-[110%] -rotate-6 scale-95 opacity-100' : '-rotate-6 translate-x-2 translate-y-2 opacity-40'">
+                                        <img src="/images/organization/SM-2.webp" class="w-full h-full object-cover transition-all duration-700"
+                                            :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
+                                    </div>
+                                                            </div>
+                        </div>
+
+                        <!-- Mobile Images Section -->
+                        <div class="md:hidden grid grid-cols-1 gap-6 mt-4 w-full">
+                                                            <img src="/images/organization/SM-1.webp" class="w-full aspect-video object-cover neo-border-sm">
+                                                            <img src="/images/organization/SM-2.webp" class="w-full aspect-video object-cover neo-border-sm">
+                                                    </div>
+                    </div>
+                </div>
+                                            <div class="relative pl-8 md:pl-24" x-data="{ spreading: false, itemShown: false }"
+                    x-intersect.once.margin.-100px="itemShown = true">
+                    <!-- Timeline Dot -->
+                    <div class="absolute left-0 md:left-[1.95rem] top-12 w-4 h-4 bg-[var(--bg)] border-4 border-[var(--border)] rounded-full z-10 transition-all duration-700"
+                        :class="itemShown ? (spreading ? 'border-[var(--accent)] scale-150 opacity-100' : 'opacity-100') : 'opacity-0 scale-50'">
+                    </div>
+
+                    <div class="flex flex-col md:flex-row justify-between items-start gap-12 lg:gap-24 relative">
+
+                        <!-- Left: Content Paper -->
+                        <div class="w-full md:w-[45rem] relative pt-8 transition-all duration-1000 ease-out"
+                            :class="spreading ? 'opacity-10 blur-md -translate-x-20 scale-95 pointer-events-none' : (itemShown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20')">
+                            <div class="tape-piece"></div>
+                            <div class="neo-paper p-6 sm:p-12 paper-texture relative z-20"
+                                style="transform: rotate(1deg)">
+                                <div class="mb-8 pb-6 border-b-2 border-[var(--border)]/30">
+                                    <h4
+                                        class="font-black text-3xl sm:text-4xl text-[var(--text-main)] mb-1 tracking-tight uppercase leading-[1.1]">
+                                        Head of Mobilization Division
+                                    </h4>
+                                </div>
+
+                                <p
+                                    class="text-xs sm:text-sm text-[var(--text-main)] font-black uppercase tracking-[0.3em] mb-8">
+                                    Dec 2025 • Closing ICB
+                                </p>
+
+                                <ul class="space-y-4 text-lg leading-relaxed list-none">
+                                                                            <li
+                                            class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
+                                            Led and managed a division of 40 committee members, overseeing the strategic mobilization of around 4,000 participants to ensure a smooth and orderly Closing ICB event.
+                                        </li>
+                                                                            <li
+                                            class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
+                                            Strategically plotted and assigned personnel to key operational zones, optimizing crowd control and ensuring all staff were effectively positioned to manage participant flow.
+                                        </li>
+                                                                            <li
+                                            class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
+                                            Orchestrated the seamless movement of participants, proactively identifying and resolving operational bottlenecks to maintain the event’s schedule and safety protocols.
+                                        </li>
+                                                                    </ul>
+                            </div>
+                        </div>
+
+                        <!-- Right: Photo Fan (Dynamic) -->
+                        <div class="hidden md:block shrink-0 w-[32rem] h-[24rem] z-30 mt-16 group cursor-pointer transition-all duration-1000 ease-out delay-200"
+                            :class="itemShown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'"
+                            @mouseenter="spreading = true" @mouseleave="spreading = false">
+                            <div class="relative w-full h-full">
+                                <!-- Overlay Label -->
+                                <div class="absolute -top-16 left-0 right-0 text-center transition-all duration-500"
+                                    :class="spreading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'">
+                                    <span
+                                        class="text-[10px] font-black uppercase tracking-[0.6em] text-[var(--accent)]">Perspective
+                                        Explorer Active</span>
+                                </div>
+
+                                                                                                        <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-30"
+                                        :class="spreading ? 'scale-110 !shadow-2xl rotate-0 -translate-y-8' : 'rotate-3'">
+                                        <img src="/images/organization/ClosingICB-1.webp" class="w-full h-full object-cover transition-all duration-700"
+                                            :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
+                                    </div>
+                                                                                                        <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-20"
+                                        :class="spreading ? '-translate-x-[110%] -rotate-6 scale-95 opacity-100' : '-rotate-6 translate-x-2 translate-y-2 opacity-40'">
+                                        <img src="/images/organization/ClosingICB-2.webp" class="w-full h-full object-cover transition-all duration-700"
+                                            :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
+                                    </div>
+                                                            </div>
+                        </div>
+
+                        <!-- Mobile Images Section -->
+                        <div class="md:hidden grid grid-cols-1 gap-6 mt-4 w-full">
+                                                            <img src="/images/organization/ClosingICB-1.webp" class="w-full aspect-video object-cover neo-border-sm">
+                                                            <img src="/images/organization/ClosingICB-2.webp" class="w-full aspect-video object-cover neo-border-sm">
+                                                    </div>
+                    </div>
+                </div>
+                                            <div class="relative pl-8 md:pl-24" x-data="{ spreading: false, itemShown: false }"
+                    x-intersect.once.margin.-100px="itemShown = true">
+                    <!-- Timeline Dot -->
+                    <div class="absolute left-0 md:left-[1.95rem] top-12 w-4 h-4 bg-[var(--bg)] border-4 border-[var(--border)] rounded-full z-10 transition-all duration-700"
+                        :class="itemShown ? (spreading ? 'border-[var(--accent)] scale-150 opacity-100' : 'opacity-100') : 'opacity-0 scale-50'">
+                    </div>
+
+                    <div class="flex flex-col md:flex-row justify-between items-start gap-12 lg:gap-24 relative">
+
+                        <!-- Left: Content Paper -->
+                        <div class="w-full md:w-[45rem] relative pt-8 transition-all duration-1000 ease-out"
+                            :class="spreading ? 'opacity-10 blur-md -translate-x-20 scale-95 pointer-events-none' : (itemShown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20')">
+                            <div class="tape-piece"></div>
+                            <div class="neo-paper p-6 sm:p-12 paper-texture relative z-20"
+                                style="transform: rotate(-0.5deg)">
+                                <div class="mb-8 pb-6 border-b-2 border-[var(--border)]/30">
+                                    <h4
+                                        class="font-black text-3xl sm:text-4xl text-[var(--text-main)] mb-1 tracking-tight uppercase leading-[1.1]">
+                                        Logistics Associate
+                                    </h4>
+                                </div>
+
+                                <p
+                                    class="text-xs sm:text-sm text-[var(--text-main)] font-black uppercase tracking-[0.3em] mb-8">
+                                    Nov 2025 • Mentoring General ICB
+                                </p>
+
+                                <ul class="space-y-4 text-lg leading-relaxed list-none">
+                                                                            <li
+                                            class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
+                                            Executed procurement requests from various divisions, ensuring all necessary supplies and equipment were sourced and available on schedule to support event operations.
+                                        </li>
+                                                                            <li
+                                            class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
+                                            Maintained accountability for borrowed assets, tracking their usage throughout the event and ensuring all items were returned in proper condition.
+                                        </li>
+                                                                            <li
+                                            class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
+                                            Provided on-site operational support by assisting in the physical setup of event infrastructure, ensuring all logistical needs were met according to the team&#039;s requirements.
+                                        </li>
+                                                                    </ul>
+                            </div>
+                        </div>
+
+                        <!-- Right: Photo Fan (Dynamic) -->
+                        <div class="hidden md:block shrink-0 w-[32rem] h-[24rem] z-30 mt-16 group cursor-pointer transition-all duration-1000 ease-out delay-200"
+                            :class="itemShown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'"
+                            @mouseenter="spreading = true" @mouseleave="spreading = false">
+                            <div class="relative w-full h-full">
+                                <!-- Overlay Label -->
+                                <div class="absolute -top-16 left-0 right-0 text-center transition-all duration-500"
+                                    :class="spreading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'">
+                                    <span
+                                        class="text-[10px] font-black uppercase tracking-[0.6em] text-[var(--accent)]">Perspective
+                                        Explorer Active</span>
+                                </div>
+
+                                                                                                        <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-30"
+                                        :class="spreading ? 'scale-110 !shadow-2xl rotate-0 -translate-y-8' : 'rotate-3'">
+                                        <img src="/images/organization/MGICB-1.webp" class="w-full h-full object-cover transition-all duration-700"
+                                            :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
+                                    </div>
+                                                            </div>
+                        </div>
+
+                        <!-- Mobile Images Section -->
+                        <div class="md:hidden grid grid-cols-1 gap-6 mt-4 w-full">
+                                                            <img src="/images/organization/MGICB-1.webp" class="w-full aspect-video object-cover neo-border-sm">
+                                                    </div>
+                    </div>
+                </div>
+                                            <div class="relative pl-8 md:pl-24" x-data="{ spreading: false, itemShown: false }"
+                    x-intersect.once.margin.-100px="itemShown = true">
+                    <!-- Timeline Dot -->
+                    <div class="absolute left-0 md:left-[1.95rem] top-12 w-4 h-4 bg-[var(--bg)] border-4 border-[var(--border)] rounded-full z-10 transition-all duration-700"
+                        :class="itemShown ? (spreading ? 'border-[var(--accent)] scale-150 opacity-100' : 'opacity-100') : 'opacity-0 scale-50'">
+                    </div>
+
+                    <div class="flex flex-col md:flex-row justify-between items-start gap-12 lg:gap-24 relative">
+
+                        <!-- Left: Content Paper -->
+                        <div class="w-full md:w-[45rem] relative pt-8 transition-all duration-1000 ease-out"
+                            :class="spreading ? 'opacity-10 blur-md -translate-x-20 scale-95 pointer-events-none' : (itemShown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20')">
+                            <div class="tape-piece"></div>
+                            <div class="neo-paper p-6 sm:p-12 paper-texture relative z-20"
+                                style="transform: rotate(0.5deg)">
+                                <div class="mb-8 pb-6 border-b-2 border-[var(--border)]/30">
+                                    <h4
+                                        class="font-black text-3xl sm:text-4xl text-[var(--text-main)] mb-1 tracking-tight uppercase leading-[1.1]">
+                                        Field Coordinator
+                                    </h4>
+                                </div>
+
+                                <p
+                                    class="text-xs sm:text-sm text-[var(--text-main)] font-black uppercase tracking-[0.3em] mb-8">
+                                    Oct 2025 • Opening ICB
+                                </p>
+
+                                <ul class="space-y-4 text-lg leading-relaxed list-none">
+                                                                            <li
+                                            class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
+                                            Directed on-site operations and led a team of 100 committee members to execute the Opening ICB event for around 4,000 participants, ensuring every segment of the program ran precisely according to the scheduled timeline.
+                                        </li>
+                                                                            <li
+                                            class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
+                                            Served as the primary point of contact for real-time troubleshooting, swiftly resolving operational challenges to ensure the event&#039;s continuity and success.
+                                        </li>
+                                                                            <li
+                                            class="relative pl-8 text-[var(--text-dim)] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-[var(--accent)]/30 before:border-2 before:border-[var(--accent)]">
+                                            Facilitated seamless communication between multiple divisions to synchronize activities, maintaining high-quality execution for a large-scale audience.
+                                        </li>
+                                                                    </ul>
+                            </div>
+                        </div>
+
+                        <!-- Right: Photo Fan (Dynamic) -->
+                        <div class="hidden md:block shrink-0 w-[32rem] h-[24rem] z-30 mt-16 group cursor-pointer transition-all duration-1000 ease-out delay-200"
+                            :class="itemShown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'"
+                            @mouseenter="spreading = true" @mouseleave="spreading = false">
+                            <div class="relative w-full h-full">
+                                <!-- Overlay Label -->
+                                <div class="absolute -top-16 left-0 right-0 text-center transition-all duration-500"
+                                    :class="spreading ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'">
+                                    <span
+                                        class="text-[10px] font-black uppercase tracking-[0.6em] text-[var(--accent)]">Perspective
+                                        Explorer Active</span>
+                                </div>
+
+                                                                                                        <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-30"
+                                        :class="spreading ? 'scale-110 !shadow-2xl rotate-0 -translate-y-8' : 'rotate-3'">
+                                        <img src="/images/organization/OpeningICB-2.webp" class="w-full h-full object-cover transition-all duration-700"
+                                            :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
+                                    </div>
+                                                                                                        <div class="absolute inset-x-10 inset-y-0 bg-[var(--bg-alt)] p-3 neo-shadow neo-border transition-all duration-700 z-20"
+                                        :class="spreading ? '-translate-x-[110%] -rotate-6 scale-95 opacity-100' : '-rotate-6 translate-x-2 translate-y-2 opacity-40'">
+                                        <img src="/images/organization/OpeningICB-1.webp" class="w-full h-full object-cover transition-all duration-700"
+                                            :class="spreading ? 'grayscale-0 brightness-100' : 'grayscale brightness-110'">
+                                    </div>
+                                                            </div>
+                        </div>
+
+                        <!-- Mobile Images Section -->
+                        <div class="md:hidden grid grid-cols-1 gap-6 mt-4 w-full">
+                                                            <img src="/images/organization/OpeningICB-2.webp" class="w-full aspect-video object-cover neo-border-sm">
+                                                            <img src="/images/organization/OpeningICB-1.webp" class="w-full aspect-video object-cover neo-border-sm">
+                                                    </div>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+</section>    <section id="certificate" class="py-24 sm:py-32 relative bg-transparent" x-data="{ shown: false, expandedImage: null }"
+    x-intersect.once.margin.-100px="shown = true">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000"
+        :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+
+        <div class="mb-24">
+            <h2 class="text-4xl sm:text-7xl font-black text-[var(--text-main)] tracking-tighter uppercase mb-2">
+                Sertifikasi
+            </h2>
+            <div class="w-32 h-2 bg-[var(--accent)]"></div>
+        </div>
+
+        
+        <!-- Square Grid -->
+        <div class="flex flex-col sm:flex-row gap-8 max-w-5xl mx-auto">
+                            <div class="group flex-1 min-h-[280px] bg-[var(--bg-alt)] flex flex-col justify-between p-10 neo-border neo-shadow cursor-pointer hover:border-[var(--accent)] transition-all font-display"
+                    @click="expandedCert = {&quot;id&quot;:1,&quot;title&quot;:&quot;SOC for Beginner &quot;,&quot;platform&quot;:&quot;Jagoan Siber&quot;,&quot;desc&quot;:&quot;Ranked 3rd in a Jeopardy-style CTF competition as a Final Project. I successfully tackled complex challenges across all core categories: scenario reading, SIEM analysis, network forensics, memory forensics, threat hunting, threat intelligence, alert triaging, and incident reporting.&quot;,&quot;has_leaderboard&quot;:true,&quot;img_cert&quot;:&quot;\/images\/certification\/Sertifikat-SOC.webp&quot;,&quot;img_leaderboard&quot;:&quot;\/images\/certification\/Leaderboard-SOC-Analyst.webp&quot;}">
+
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="mb-6 px-5 py-2 bg-[var(--bg-alt)] border-2 border-[var(--border)] text-xs font-black uppercase tracking-widest text-[var(--text-main)] shadow-sm">
+                            Jagoan Siber
+                        </div>
+                        <h3
+                            class="text-3xl sm:text-4xl font-black text-[var(--text-main)] text-center leading-none tracking-tighter group-hover:text-[var(--accent)] transition-colors">
+                            SOC for Beginner 
+                        </h3>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                        <p
+                            class="text-xs font-black text-[var(--text-dim)] group-hover:text-[var(--text-main)] transition-colors tracking-[0.3em] uppercase flex items-center gap-3">
+                            View Certificate
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </p>
+                    </div>
+
+                </div>
+                            <div class="group flex-1 min-h-[280px] bg-[var(--bg-alt)] flex flex-col justify-between p-10 neo-border neo-shadow cursor-pointer hover:border-[var(--accent)] transition-all font-display"
+                    @click="expandedCert = {&quot;id&quot;:2,&quot;title&quot;:&quot;Ethical Hacking for Beginner&quot;,&quot;platform&quot;:&quot;Jagoan Siber&quot;,&quot;desc&quot;:&quot;Secured 3rd place in a comprehensive Ethical Hacking assessment by identifying 26 vulnerabilities across two dedicated laboratory environments. Vulnerability that I found including Remote Code Execution (RCE), Cross-Site Scripting (XSS), Information Disclosure, and Broken Access Control.&quot;,&quot;has_leaderboard&quot;:true,&quot;img_cert&quot;:&quot;\/images\/certification\/Sertifikat-Ethical-Hacking.webp&quot;,&quot;img_leaderboard&quot;:&quot;\/images\/certification\/Leaderboard-Ethical-Hacking.webp&quot;}">
+
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="mb-6 px-5 py-2 bg-[var(--bg-alt)] border-2 border-[var(--border)] text-xs font-black uppercase tracking-widest text-[var(--text-main)] shadow-sm">
+                            Jagoan Siber
+                        </div>
+                        <h3
+                            class="text-3xl sm:text-4xl font-black text-[var(--text-main)] text-center leading-none tracking-tighter group-hover:text-[var(--accent)] transition-colors">
+                            Ethical Hacking for Beginner
+                        </h3>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                        <p
+                            class="text-xs font-black text-[var(--text-dim)] group-hover:text-[var(--text-main)] transition-colors tracking-[0.3em] uppercase flex items-center gap-3">
+                            View Certificate
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </p>
+                    </div>
+
+                </div>
+                    </div>
+
+        <!-- Alpine.js Modal Lightbox -->
+        <template x-teleport="body">
+            <div x-show="expandedCert" style="display: none;" class="fixed inset-0 z-[100] overflow-y-auto"
+                aria-labelledby="modal-title" role="dialog" aria-modal="true"
+                x-effect="expandedCert ? document.body.classList.add('overflow-hidden') : document.body.classList.remove('overflow-hidden')">
+                <!-- Backdrop -->
+                <div x-show="expandedCert" x-transition.opacity class="fixed inset-0 bg-white/95 backdrop-blur-sm"
+                    @click="expandedCert = null"></div>
+
+                <div class="flex min-h-full items-center justify-center p-4 sm:p-6 lg:p-8 relative z-10">
+
+                    <!-- Close button -->
+                    <button @click="expandedCert = null"
+                        class="fixed top-4 right-4 z-[110] sm:top-8 sm:right-8 p-3 rounded-full bg-gray-100 hover:bg-gray-200 text-black transition-colors">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+
+                    <!-- Modal Panel -->
+                    <div x-show="expandedCert" x-transition:enter="ease-out duration-500"
+                        x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="ease-in duration-300" x-transition:leave-start="opacity-100 scale-100"
+                        x-transition:leave-end="opacity-0 scale-95"
+                        class="relative w-full max-w-7xl z-10 flex flex-col lg:flex-row gap-0 bg-[var(--bg)] neo-shadow neo-border overflow-hidden">
+
+                        <!-- LEFT PANEL (50%): Main Certificate -->
+                        <div class="w-full lg:w-1/2 bg-white p-6 sm:p-12 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-[var(--border)] cursor-zoom-in group/img"
+                            @click="expandedImage = expandedCert?.img_cert">
+                            <div
+                                class="w-full h-full flex flex-col items-center justify-center min-h-[250px] lg:min-h-[400px]">
+                                <img :src="expandedCert?.img_cert" :alt="expandedCert?.title"
+                                    class="w-full object-contain max-h-[80vh] shadow-2xl transition-transform duration-500 group-hover/img:scale-[1.02]">
+                                <span
+                                    class="mt-4 text-[10px] font-black uppercase tracking-widest text-zinc-400 group-hover/img:text-[var(--accent)] transition-colors">Click
+                                    to Expand</span>
+                            </div>
+                        </div>
+
+                        <!-- RIGHT PANEL (50%): Leaderboard + Description -->
+                        <div class="w-full lg:w-1/2 flex flex-col bg-[var(--bg-alt)]">
+
+                            <!-- Top: Leaderboard Image (Compact) -->
+                            <div x-show="expandedCert?.has_leaderboard"
+                                class="w-full p-6 border-b border-[var(--border)] bg-white/50 cursor-zoom-in group/img"
+                                @click="expandedImage = expandedCert?.img_leaderboard">
+                                <p
+                                    class="text-[0.55rem] font-black uppercase tracking-[0.4em] text-[var(--accent)] mb-3 italic">
+                                    Achievement Verification</p>
+                                <div
+                                    class="w-full min-h-[180px] flex items-center justify-center overflow-hidden neo-border bg-white shadow-inner">
+                                    <img :src="expandedCert?.img_leaderboard"
+                                        class="w-full h-auto max-h-[30vh] object-contain transition-transform duration-500 group-hover/img:scale-[1.05]"
+                                        alt="Leaderboard details">
+                                </div>
+                                <p
+                                    class="mt-2 text-center text-[9px] font-black uppercase tracking-widest text-zinc-400 group-hover/img:text-[var(--accent)] transition-colors">
+                                    Click to Expand Achievement</p>
+                            </div>
+
+                            <!-- Bottom: Text Details -->
+                            <div class="flex-1 p-6 sm:p-10 flex flex-col justify-center">
+                                <div class="w-10 h-1 bg-[var(--accent)] mb-6"></div>
+                                <h3 class="text-3xl sm:text-4xl font-black text-[var(--text-main)] mb-4 tracking-tighter uppercase leading-none"
+                                    x-text="expandedCert?.title"></h3>
+                                <p class="text-[var(--text-dim)] text-base leading-relaxed italic"
+                                    x-text="expandedCert?.desc"></p>
+
+                                <div class="mt-12 pt-8 border-t border-[var(--border)]/50">
+                                    <button @click="expandedCert = null"
+                                        class="text-sm font-black uppercase tracking-widest text-[var(--text-main)] hover:text-[var(--accent)] transition-colors flex items-center gap-3">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                                d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                                        </svg>
+                                        Back to Gallery
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Full-Screen Image Lightbox (Second Level) -->
+        <template x-teleport="body">
+            <div x-show="expandedImage" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
+                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" style="display: none;"
+                class="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/95 backdrop-blur-md">
+
+                <button @click="expandedImage = null"
+                    class="absolute top-8 right-8 p-4 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
                     </svg>
+                </button>
+
+                <div class="w-full h-full flex items-center justify-center p-8" @click="expandedImage = null">
+                    <img :src="expandedImage" class="max-w-full max-h-full object-contain shadow-2xl" @click.stop>
+                </div>
+            </div>
+        </template>
+
+    </div>
+</section>    <section id="education" class="py-24 sm:py-32 relative bg-transparent" x-data="{ shown: false }"
+    x-intersect.once.margin.-100px="shown = true">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000"
+        :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+
+        <div class="mb-24">
+            <h2 class="text-4xl sm:text-7xl font-black text-[var(--text-main)] tracking-tighter uppercase mb-2">
+                Pendidikan Tinggi
+            </h2>
+            <div class="w-32 h-2 bg-[var(--accent)]"></div>
+        </div>
+
+        <div
+            class="flex flex-col sm:flex-row sm:items-center justify-between border-y border-[var(--border)] py-12 gap-8 group hover:bg-[var(--bg-alt)] transition-all px-4 sm:px-8 -mx-4 sm:-mx-8 cursor-default neo-shadow outline-none border-t-0">
+
+            <div class="flex items-center gap-8">
+                <!-- University Logo -->
+                <div
+                    class="w-20 h-20 shrink-0 bg-transparent flex items-center justify-center rounded-none group-hover:scale-110 transition-all duration-500 overflow-hidden">
+                    <img src="/images/university/university-logo.webp" alt="University Logo"
+                        class="w-full h-full object-contain mix-blend-multiply">
                 </div>
 
                 <div>
-                    <h3 class="text-3xl font-black text-[var(--text-main)] tracking-tight">Universitas Telkom</h3>
-                    <p class="text-[var(--text-dim)] font-bold text-xl mt-2 italic">GPA: <span class="text-[var(--text-main)] not-italic">3.85 / 4.00</span></p>
+                    <h3 class="text-3xl font-black text-[var(--text-main)] tracking-tight">
+                        Universitas Telkom
+                    </h3>
+                    <p class="text-[var(--text-dim)] font-bold text-xl mt-2">
+                        Sarjana Informatika
+                    </p>
+                    <!--<p class="text-[var(--text-dim)] font-bold text-xl mt-2 italic">GPA: <span class="text-[var(--text-main)] not-italic">3.85 / 4.00</span></p>-->
                 </div>
             </div>
 
             <div class="sm:text-right">
-                <span class="text-[var(--text-main)] font-black text-2xl tracking-widest uppercase">2022 - 2026 (Expected)</span>
+                <span
+                    class="text-[var(--text-main)] font-black text-2xl tracking-widest uppercase">2023 - sekarang</span>
             </div>
 
         </div>
 
     </div>
-</section>
-    <section id="contact" class="py-40 relative bg-transparent" x-data="{ shown: false }" x-intersect.once.margin.-100px="shown = true">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center transition-all duration-1000" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
-        
+</section>    <section id="contact" class="py-28 sm:py-40 relative bg-transparent" x-data="{ shown: false }"
+    x-intersect.once.margin.-100px="shown = true">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center transition-all duration-1000"
+        :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+
         <div class="w-20 h-2 bg-[var(--accent)] mx-auto mb-10"></div>
-        <h2 class="text-6xl sm:text-8xl font-black text-[var(--text-main)] tracking-tighter mb-8 leading-none">Let's Talk.</h2>
+        <h2 class="text-6xl sm:text-8xl font-black text-[var(--text-main)] tracking-tighter mb-8 leading-none">Let's
+            Talk.</h2>
         <p class="text-xl text-[var(--text-dim)] mb-16 max-w-xl mx-auto font-medium leading-relaxed">
-            Currently looking for new opportunities in <span class="text-[var(--text-main)] font-bold underline decoration-[var(--accent)] decoration-2">Cybersecurity</span>. Whether you have a question or just want to say hi, I'll get back to you!
+            Currently looking for new opportunities in <span
+                class="text-[var(--text-main)] font-bold underline decoration-[var(--accent)] decoration-2">Cybersecurity</span>.
+            Whether you have a question or just want to say hi, I'll get back to you!
         </p>
 
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-10">
-            <a href="mailto:rahadya.daffa@gmail.com" class="group relative px-12 py-6 bg-[var(--accent)] text-white text-xl font-black neo-shadow neo-border-accent hover:brightness-110 transition-all uppercase tracking-widest">
-                Say Hello
-                <span class="absolute right-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:translate-x-3 transition-all">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
+        <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-6">
+            <!-- Email -->
+            <a href="mailto:rahadyadaffa@gmail.com"
+                class="flex items-center gap-4 px-8 py-4 neo-shadow border-2 border-[var(--border)] bg-white text-[var(--text-main)] hover:bg-[var(--accent)] hover:text-white hover:-translate-y-1 transition-all duration-300 group font-bold text-xl uppercase tracking-widest min-w-[220px]">
+                <svg class="w-8 h-8 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                    </path>
+                </svg>
+                Email
             </a>
-            
-            <a href="https://www.linkedin.com/in/daffa-rahadya-atmawiguna-25ab023b4/" target="_blank" rel="noopener" class="flex items-center gap-3 text-xl font-black text-[var(--text-dim)] hover:text-[var(--accent)] transition-all group">
-                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                  <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/>
+
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/daffarahadya" target="_blank" rel="noopener"
+                class="flex items-center gap-4 px-8 py-4 neo-shadow border-2 border-[var(--border)] bg-white text-[var(--text-main)] hover:bg-[var(--accent)] hover:text-white hover:-translate-y-1 transition-all duration-300 group font-bold text-xl uppercase tracking-widest min-w-[220px]">
+                <svg class="w-8 h-8 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd"
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                        clip-rule="evenodd" />
                 </svg>
                 LinkedIn
+            </a>
+
+            <!-- GitHub -->
+            <a href="https://github.com/rahadyadaffa-glitch" target="_blank" rel="noopener"
+                class="flex items-center gap-4 px-8 py-4 neo-shadow border-2 border-[var(--border)] bg-white text-[var(--text-main)] hover:bg-[var(--accent)] hover:text-white hover:-translate-y-1 transition-all duration-300 group font-bold text-xl uppercase tracking-widest min-w-[220px]">
+                <svg class="w-8 h-8 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd"
+                        d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                        clip-rule="evenodd" />
+                </svg>
+                GitHub
+            </a>
+
+            <!-- WhatsApp -->
+            <a href="https://wa.me/6281343139894" target="_blank" rel="noopener"
+                class="flex items-center gap-4 px-8 py-4 neo-shadow border-2 border-[var(--border)] bg-white text-[var(--text-main)] hover:bg-[var(--accent)] hover:text-white hover:-translate-y-1 transition-all duration-300 group font-bold text-xl uppercase tracking-widest min-w-[220px]">
+                <svg class="w-8 h-8 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                    </path>
+                </svg>
+                WhatsApp
             </a>
         </div>
 
@@ -836,9 +1313,13 @@
 </section>
     </main>
 
-    <footer class="bg-white text-gray-500 py-12 text-center border-t border-gray-200 mt-20" x-data="{ shown: false }" x-intersect.once.margin.-100px="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'" class="transition-all duration-1000 delay-200">
-        <p class="text-sm">&copy; 2026 Daffa Rahadya. All rights reserved.</p>
+    <footer class="bg-white text-gray-500 py-12 text-center border-t border-gray-200 mt-20" x-data="{ shown: false }"
+        x-intersect.once.margin.-100px="shown = true"
+        :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'"
+        class="transition-all duration-1000 delay-200">
+        <p class="text-sm">&copy; 2026 Daffa Rahadya Atmawiguna. All rights reserved.</p>
     </footer>
 
 </body>
+
 </html>

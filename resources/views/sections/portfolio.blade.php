@@ -1,11 +1,12 @@
-<section id="portfolio" class="py-32 relative bg-transparent" x-data="{ shown: false }"
+<section id="portfolio" class="py-24 sm:py-32 relative bg-transparent" x-data="{ shown: false }"
     x-intersect.once.margin.-100px="shown = true">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000"
         :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
 
         <div class="mb-24">
-            <h2 class="text-5xl sm:text-7xl font-black text-[var(--text-main)] tracking-tighter uppercase mb-2">
-                {{ __('messages.section_titles.portfolio') }}</h2>
+            <h2 class="text-4xl sm:text-7xl font-black text-[var(--text-main)] tracking-tighter uppercase mb-2">
+                {{ __('messages.section_titles.portfolio') }}
+            </h2>
             <div class="w-32 h-2 bg-[var(--accent)]"></div>
         </div>
 
